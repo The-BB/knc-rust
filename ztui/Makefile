@@ -35,19 +35,6 @@ define Package/ztui/description
   in an attempt to transform how people work with it.
 endef
 
-# error: failed to run custom build command for `openssl-sys v0.9.87`
-RUSTC_VARS += OPENSSL_NO_VENDOR=1
-
-# X86_64: error while loading shared libraries: \
-#	  libssl.so.3: cannot open shared object file: \
-#	  No such file or directory
-ifeq ($(CONFIG_x86_64),y)
-RUSTC_VARS += \
-	X86_64_UNKNOWN_LINUX_GNU_OPENSSL_STATIC=true \
-	X86_64_UNKNOWN_LINUX_GNU_OPENSSL_INCLUDE_DIR="$(STAGING_DIR_HOST)/include" \
-	X86_64_UNKNOWN_LINUX_GNU_OPENSSL_LIB_DIR="$(STAGING_DIR_HOST)/lib"
-endif
-
 define Package/ztui/install
 	$(INSTALL_DIR) $(1)/opt/usr/bin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/ztui $(1)/opt/usr/bin
