@@ -3,9 +3,9 @@
 @@ -42,7 +42,8 @@ id-arena = "2.2.1"
  image = "0.25"
  include_dir = "0.7"
- lazy-regex = "3.3"
+ lazy-regex = "3.4"
 -libc = "0.2"
-+# mips+musl+getrandom
++# musl+getrandom
 +libc = "=0.2.172"
  lru = "0.12"
  memmap2 = "0.9"
