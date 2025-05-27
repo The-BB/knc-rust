@@ -2,10 +2,10 @@
 +++ b/Cargo.toml
 @@ -228,7 +228,8 @@ build-time = "0.1"
  directories = "6.0"
- xdg = "2.5"
+ xdg = "3.0"
  rpassword = "7.3"
 -libc = { version = "0.2", features = ["extra_traits"] }
-+# mips+musl+getrandom
++# musl+getrandom
 +libc = { version = "=0.2.172", features = ["extra_traits"] }
  rand = "0.9"
  
@@ -17,7 +17,7 @@
  
  socket2 = { version = "0.5", features = ["all"] }
 -libc = "~0.2.141"
-+# mips+musl+getrandom
++# musl+getrandom
 +libc = "=0.2.172"
  
  hyper = { version = "1.4", optional = true, features = ["full"] }
@@ -29,7 +29,7 @@
  log = "0.4"
  
 -libc = "~0.2.141"
-+# mips+musl+getrandom
++# musl+getrandom
 +libc = "=0.2.172"
  bytes = "1.7"
  cfg-if = "1"
