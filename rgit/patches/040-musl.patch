@@ -1,12 +1,12 @@
 --- a/Cargo.toml
 +++ b/Cargo.toml
-@@ -57,7 +57,8 @@ rkyv = { version = "0.8", features = [
+@@ -60,7 +60,8 @@ rkyv = { version = "0.8", features = [
    "bytecheck",
    "alloc",
  ], default-features = false }
 -rocksdb = { version = "0.22", default-features = false, features = ["snappy"] }
 +# musl
 +rocksdb = { git = "https://github.com/rust-rocksdb/rust-rocksdb", rev = "da8cf6e" , default-features = false, features = ["snappy"] }
- rust-ini = "0.21.1"
  serde = { version = "1.0", features = ["derive", "rc"] }
  simdutf8 = "0.1.5"
+ tar = { version = "0.4", default-features = false }
