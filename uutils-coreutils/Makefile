@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=coreutils
-PKG_VERSION:=0.0.30
+PKG_VERSION:=0.1.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/uutils/coreutils/tar.gz/refs/tags/$(PKG_VERSION)?
-PKG_HASH:=732c0ac646be7cc59a51cdfdb2d0ff1a4d2501c28f900a2d447c77729fdfca22
+PKG_HASH:=55c528f2b53c1b30cb704550131a806e84721c87b3707b588a961a6c97f110d8
 
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
@@ -18,7 +18,7 @@ PKG_LICENSE_FILES:=LICENSE
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0439 getrandom-0215
+PKG_BUILD_DEPENDS += chrono-0441 getrandom-0215 getrandom-031 iana-time-zone-0163
 
 # XXX without:  chcon & runcon (depends on SELinux);
 #		stdbuf (fail to compile on several platforms).
@@ -100,6 +100,8 @@ define Package/uutils-coreutils-apps/description
   in Rust. While all programs have been implemented, some options might be
   missing or different behavior might be experienced.
 endef
+
+RUSTC_VARS += PROJECT_NAME_FOR_VERSION_STRING="uutils coreutils"
 
 ifeq ($(BUILD_VARIANT),apps)
   CARGO_ARGS += --features="$(COREUTILS_APPS)"

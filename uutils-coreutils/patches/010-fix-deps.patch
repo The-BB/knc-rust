@@ -1,22 +1,32 @@
 --- a/Cargo.toml
 +++ b/Cargo.toml
-@@ -273,7 +273,7 @@ binary-heap-plus = "0.5.0"
+@@ -277,7 +277,7 @@ binary-heap-plus = "0.5.0"
  bstr = "1.9.1"
  bytecount = "0.6.8"
  byteorder = "1.5.0"
--chrono = { version = "0.4.38", default-features = false, features = [
-+chrono = { version = "=0.4.39", default-features = false, features = [
+-chrono = { version = "0.4.41", default-features = false, features = [
++chrono = { version = "=0.4.41", default-features = false, features = [
    "std",
    "alloc",
    "clock",
-@@ -581,3 +581,10 @@ manual_let_else = "warn"
- all = { level = "deny", priority = -1 }
- cargo = { level = "warn", priority = -1 }
- pedantic = { level = "deny", priority = -1 }
+@@ -301,7 +301,7 @@ gcd = "2.3"
+ glob = "0.3.1"
+ half = "2.4.1"
+ hostname = "0.4"
+-iana-time-zone = "0.1.57"
++iana-time-zone = "=0.1.63"
+ indicatif = "0.17.8"
+ itertools = "0.14.0"
+ libc = "0.2.172"
+@@ -675,3 +675,11 @@ bool_to_int_with_if = "allow" # 2
+ # ref_as_ptr = "allow"  # 2
+ # unreadable_literal = "allow"  # 1
+ uninlined_format_args = "allow" # ?
 +
 +[patch.crates-io]
 +# localtime/zoneinfo
-+chrono = { path = "../../chrono-0.4.39" }
-+iana-time-zone = { path = "../../iana-time-zone-0.1.61" }
++chrono = { path = "../../chrono-0.4.41" }
++iana-time-zone = { path = "../../iana-time-zone-0.1.63" }
 +# all: no SYS_getrandom
-+getrandom = { path = "../../getrandom-0.2.15" }
++getrandom = { path = "../../getrandom-0.2.15", package = "getrandom", version = "0.2.15" }
++getrandom3 = { path = "../../getrandom-0.3.1", package = "getrandom", version = "0.3.1" }
