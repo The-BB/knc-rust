@@ -6,7 +6,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=youtube-tui
 PKG_VERSION:=0.8.3
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/siriusmart/youtube-tui/tar.gz/refs/tags/v$(PKG_VERSION)?
@@ -18,7 +18,7 @@ PKG_LICENSE_FILES:=LICENSE
 include $(INCLUDE_DIR)/package.mk
 include $(TOPDIR)/feeds/rustlang/rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0440 getrandom-0216 iana-time-zone-0163
+PKG_BUILD_DEPENDS += chrono-0440 getrandom-0216 getrandom-033 iana-time-zone-0163
 
 define Package/youtube-tui
   SECTION:=multimedia
@@ -26,6 +26,7 @@ define Package/youtube-tui
   TITLE:=An aesthetically pleasing YouTube TUI
   URL:=https://siriusmart.github.io/youtube-tui
   DEPENDS:=+libopenssl
+  EXTRA_DEPENDS:=yt-dlp
 endef
 
 define Package/youtube-tui/description
