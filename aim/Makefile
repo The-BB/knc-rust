@@ -6,7 +6,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=aim
 PKG_VERSION:=1.8.6
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/mihaigalos/aim/tar.gz/refs/tags/$(PKG_VERSION)?
@@ -18,7 +18,7 @@ PKG_LICENSE_FILES:=LICENSE.md
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0440
+PKG_BUILD_DEPENDS += chrono-0440 getrandom-0215 getrandom-031 iana-time-zone-0161
 
 define Package/aim
   SECTION:=net

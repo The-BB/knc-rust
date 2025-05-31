@@ -1,6 +1,6 @@
 --- a/Cargo.toml
 +++ b/Cargo.toml
-@@ -58,6 +58,13 @@ warpy = "0.3.54"
+@@ -58,6 +58,16 @@ warpy = "0.3.54"
  
  [dev-dependencies]
  serial_test = "2.0.0"
@@ -14,3 +14,6 @@
 +# localtime/zoneinfo
 +chrono = { path = "../chrono-0.4.40" }
 +iana-time-zone = { path = "../iana-time-zone-0.1.61" }
++# all: no SYS_getrandom
++getrandom2 = { path = "../getrandom-0.2.15", package = "getrandom", version = "0.2.15" }
++getrandom3 = { path = "../getrandom-0.3.1", package = "getrandom", version = "0.3.1" }
