@@ -6,7 +6,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=leaf
 PKG_VERSION:=0.11.0
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/eycorsican/leaf/tar.gz/refs/tags/v$(PKG_VERSION)?
@@ -19,7 +19,9 @@ PKG_MAINTAINER:=Entware team, https://entware.net
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += protobuf/host protobuf chrono-0431 quinn-0104
+PKG_BUILD_DEPENDS += \
+	protobuf/host protobuf chrono-0431 getrandom-0215 getrandom-032 \
+	iana-time-zone-0159 quinn-0104
 
 define Package/leaf
   SECTION:=net
