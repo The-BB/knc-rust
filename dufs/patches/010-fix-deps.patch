@@ -1,0 +1,22 @@
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -13,7 +13,7 @@ keywords = ["static", "file", "server",
+ [dependencies]
+ clap = { version = "4.5", features = ["wrap_help", "env"] }
+ clap_complete = "4.5"
+-chrono = { version = "0.4", default-features = false, features = ["clock"] }
++chrono = { version = "=0.4.38", default-features = false, features = ["clock"] }
+ tokio = { version = "1", features = ["rt-multi-thread", "macros", "fs", "io-util", "signal"]}
+ tokio-util = { version = "0.7",  features = ["io-util", "compat"] }
+ hyper = { version = "1", features = ["http1", "server"] }
+@@ -75,3 +75,10 @@ lto = true
+ codegen-units = 1
+ panic = "abort"
+ strip = "symbols"
++
++[patch.crates-io]
++# localtime/zoneinfo
++chrono = { path = "../chrono-0.4.38" }
++iana-time-zone = { path = "../iana-time-zone-0.1.61" }
++# all: no SYS_getrandom
++getrandom = { path = "../getrandom-0.2.15", package = "getrandom", version = "0.2.15" }
