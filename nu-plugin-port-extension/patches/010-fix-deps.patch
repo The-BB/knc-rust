@@ -1,0 +1,27 @@
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -13,9 +13,22 @@ edition = "2024"
+ derive_builder = "0.20.2"
+ derive-getters = "0.5.0"
+ netstat2 = "0.11.1"
+-nu-plugin = "0.104.0"
++nu-plugin = "0.104.1"
+ sysinfo = "0.35.0"
+ 
+ [dependencies.nu-protocol]
+ features = ["plugin"]
+-version = "0.104.0"
++version = "0.104.1"
++
++[dev-dependencies]
++# error: failed to select a version for `chrono`.
++chrono = "=0.4.40"
++
++[patch.crates-io]
++nu-plugin = { path = "../nushell-0.104.1/crates/nu-plugin" }
++nu-protocol = { path = "../nushell-0.104.1/crates/nu-protocol" }
++# localtime/zoneinfo
++chrono = { path = "../chrono-0.4.40" }
++iana-time-zone = { path = "../iana-time-zone-0.1.63" }
++# all: no SYS_getrandom
++getrandom = { path = "../getrandom-0.2.16" }
