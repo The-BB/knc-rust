@@ -1,0 +1,10 @@
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -64,3 +64,7 @@ pretty_assertions = "0.6"
+ default = ["tls", "https"]
+ tls = ["dns-transport/tls"]
+ https = ["dns-transport/https"]
++
++[patch.crates-io]
++# all: no SYS_getrandom
++getrandom = { path = "../getrandom-0.3.3", package = "getrandom", version = "0.3.3" }

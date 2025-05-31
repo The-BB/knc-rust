@@ -1,12 +1,12 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2024 Entware
+# Copyright (C) 2024-2025 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=dog
 PKG_VERSION:=0.1.0
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/ogham/dog/tar.gz/refs/tags/v$(PKG_VERSION)?
@@ -19,6 +19,8 @@ USE_CARGO_LOCK:=0
 
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
+
+PKG_BUILD_DEPENDS += getrandom-033
 
 define Package/dog
   SECTION:=net
