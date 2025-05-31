@@ -1,12 +1,12 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2024 Entware
+# Copyright (C) 2024-2025 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=AdGuardian-Term
 PKG_VERSION:=1.6.0
-PKG_RELEASE:=3
+PKG_RELEASE:=4
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/Lissy93/AdGuardian-Term/tar.gz/refs/tags/$(PKG_VERSION)?
@@ -20,7 +20,7 @@ USE_CARGO_LOCK:=0
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0431
+PKG_BUILD_DEPENDS += chrono-0431 getrandom-0216 iana-time-zone-0159
 
 define Package/adguardian-term
   SECTION:=net
