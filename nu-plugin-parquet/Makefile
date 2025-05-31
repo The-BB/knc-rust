@@ -1,17 +1,17 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2024 Entware
+# Copyright (C) 2024-2025 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=nu-plugin-parquet
-PKG_VERSION:=0.11.0
+PKG_VERSION:=0.14.0
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=v$(PKG_VERSION)
 PKG_SOURCE_URL:=https://github.com/fdncred/nu_plugin_parquet
-PKG_MIRROR_HASH:=977656df567e12c00a913d4d2378d3faf81efbacde44b1400eaff4defaf8c60b
+PKG_MIRROR_HASH:=f51fc77dc547b5ac5b92be8850896137eeebf545b057836254267d49c2bcc4ec
 
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
@@ -19,7 +19,7 @@ PKG_LICENSE_FILES:=LICENSE
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0438 iana-time-zone-0161
+PKG_BUILD_DEPENDS += chrono-0440 getrandom-0215 iana-time-zone-0161
 
 define Package/nu-plugin-parquet
   SECTION:=utils
