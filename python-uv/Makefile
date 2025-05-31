@@ -6,7 +6,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=uv
 PKG_VERSION:=0.7.1
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PYPI_NAME:=uv
 PKG_HASH:=40a15f1fc73df852d7655530e5768e29dc7227ab25d9baeb711a8dde9e7f8234
@@ -14,7 +14,7 @@ PKG_HASH:=40a15f1fc73df852d7655530e5768e29dc7227ab25d9baeb711a8dde9e7f8234
 PKG_LICENSE:=Apache-2.0 MIT
 PKG_LICENSE_FILES:=LICENSE-APACHE LICENSE-MIT
 
-PKG_BUILD_DEPENDS:=boxcar-027 getrandom-0215 maturin/host
+PKG_BUILD_DEPENDS:=boxcar-027 getrandom-0215 getrandom-031 maturin/host
 
 include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
 include $(INCLUDE_DIR)/package.mk
