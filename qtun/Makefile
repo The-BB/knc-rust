@@ -6,7 +6,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=qtun
 PKG_VERSION:=0.3.0
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/shadowsocks/qtun/tar.gz/refs/tags/v$(PKG_VERSION)?
@@ -18,7 +18,7 @@ PKG_LICENSE_FILES:=LICENSE
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += getrandom-0215
+PKG_BUILD_DEPENDS += getrandom-0215 getrandom-032
 
 define Package/qtun/Default
   SECTION:=net
