@@ -49,7 +49,7 @@
  hex = "0.4"
 --- a/Cargo.toml
 +++ b/Cargo.toml
-@@ -141,3 +141,16 @@ incremental = true
+@@ -141,3 +141,17 @@ incremental = true
  # Inherits release build settings, but adds full debug symbols.
  debug = 2
  strip = "none"
@@ -65,4 +65,5 @@
 +# openssl
 +openssl-probe = { path = "../openssl-probe-0.1.6" }
 +# all: no SYS_getrandom
-+getrandom = { path = "../getrandom-0.2.16" }
++getrandom2 = { path = "../getrandom-0.2.16", package = "getrandom", version = "0.2.16" }
++getrandom3 = { path = "../getrandom-0.3.2", package = "getrandom", version = "0.3.2" }

@@ -6,7 +6,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=arti
 PKG_VERSION:=1.4.3
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_NAME)-v$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://gitlab.torproject.org/tpo/core/arti/-/archive/$(PKG_NAME)-v$(PKG_VERSION)
@@ -22,9 +22,9 @@ PKG_MAINTAINER:=Entware team, https://entware.net
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0441 coarsetime-0136 getrandom-0216 \
-		iana-time-zone-0163 merlin-300 openssl-probe-016 \
-		rust-bindgen/host
+PKG_BUILD_DEPENDS += \
+	chrono-0441 coarsetime-0136 getrandom-0216 getrandom-032 \
+	iana-time-zone-0163 merlin-300 openssl-probe-016 rust-bindgen/host
 PKG_UNPACK += --strip-components=1 -C $(PKG_BUILD_DIR)
 
 define Package/arti/Default
