@@ -24,7 +24,7 @@
  log = "0.4.14"
  log-derive = "0.4.1"
  mime = { version = "0.3.16", optional = true }
-@@ -76,3 +77,8 @@ blocking = ["tokio/rt", "tokio/rt-multi-
+@@ -76,3 +77,11 @@ blocking = ["tokio/rt", "tokio/rt-multi-
  default-tls = ["reqwest/default-tls"]
  native-tls = ["reqwest/native-tls"]
  rustls-tls = ["reqwest/rustls-tls"]
@@ -33,3 +33,6 @@
 +# localtime/zoneinfo
 +chrono = { path = "../chrono-0.4.31" }
 +iana-time-zone = { path = "../iana-time-zone-0.1.59" }
++# all: no SYS_getrandom
++getrandom2 = { path = "../getrandom-0.2.15", package = "getrandom", version = "0.2.15" }
++getrandom3 = { path = "../getrandom-0.3.2", package = "getrandom", version = "0.3.2" }
