@@ -1,17 +1,17 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2024 Entware
+# Copyright (C) 2024-2025 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=nu-plugin-regex
-PKG_VERSION:=0.10.0
+PKG_VERSION:=0.13.0
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=v$(PKG_VERSION)
 PKG_SOURCE_URL:=https://github.com/fdncred/nu_plugin_regex
-PKG_MIRROR_HASH:=9cdf53dd4735613688eff7a9640b337ae9213cadaddb646e7f7a842e083a8c5b
+PKG_MIRROR_HASH:=3cff03bfd9126e52153ca8c9a39945ae66a63c4729831bc71f5e16f8f9d0a82b
 
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
@@ -19,7 +19,7 @@ PKG_LICENSE_FILES:=LICENSE
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0438 iana-time-zone-0161
+PKG_BUILD_DEPENDS += chrono-0440 getrandom-0215 iana-time-zone-0161
 
 define Package/nu-plugin-regex
   SECTION:=utils
