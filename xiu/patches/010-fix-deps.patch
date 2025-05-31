@@ -38,7 +38,7 @@
  rand = "0.8"
  log = "0.4"
 -chrono = { version = "0.4", features = ["serde"] }
-+chrono = { version = "0.4.38", features = ["serde"] }
++chrono = { version = "=0.4.38", features = ["serde"] }
  indexmap = "1.9.3"
  #use vendored feature to enable cross compile for openssl
  reqwest = { version = "0.11.24", features = ["native-tls-vendored"] }
@@ -95,7 +95,7 @@
  members = [
    "protocol/rtmp",
    "protocol/httpflv",
-@@ -17,3 +17,8 @@ members = [
+@@ -17,3 +17,11 @@ members = [
    "library/streamhub",
    "library/common",
  ]
@@ -104,3 +104,6 @@
 +# localtime/zoneinfo
 +chrono = { path = "../chrono-0.4.38" }
 +iana-time-zone = { path = "../iana-time-zone-0.1.60" }
++# all: no SYS_getrandom
++getrandom2 = { path = "../getrandom-0.2.15", package = "getrandom", version = "0.2.15" }
++getrandom3 = { path = "../getrandom-0.3.3", package = "getrandom", version = "0.3.3" }
