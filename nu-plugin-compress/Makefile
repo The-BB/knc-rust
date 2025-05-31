@@ -1,17 +1,17 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2024 Entware
+# Copyright (C) 2024-2025 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=nu-plugin-compress
-PKG_VERSION:=0.2.1
+PKG_VERSION:=0.2.6
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=$(PKG_VERSION)
+PKG_SOURCE_VERSION:=521144e857d887af741dc9ccfb16944f4aa90c33
 PKG_SOURCE_URL:=https://github.com/yybit/nu_plugin_compress
-PKG_MIRROR_HASH:=25f857ab87524de6d941add48629114972b6c682b712ab63fdd200e0706dd36f
+PKG_MIRROR_HASH:=ae90949b181d1c3770a25b18c1554a14bb7a109179a7937341c0c29a5cd4a836
 
 PKG_LICENSE:=Apache-2.0
 PKG_LICENSE_FILES:=LICENSE
@@ -19,7 +19,7 @@ PKG_LICENSE_FILES:=LICENSE
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0438 iana-time-zone-0161
+PKG_BUILD_DEPENDS += chrono-0440 getrandom-0215 iana-time-zone-0161
 
 define Package/nu-plugin-compress
   SECTION:=utils
