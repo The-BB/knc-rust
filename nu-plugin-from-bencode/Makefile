@@ -1,17 +1,20 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2024 Entware
+# Copyright (C) 2024-2025 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=nu-plugin-from-bencode
-PKG_VERSION:=0.11.0
+PKG_REAL_VERSION:=0.11.0
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=v$(PKG_VERSION)
+PKG_SOURCE_DATE:=2025-05-19
+PKG_SOURCE_VERSION:=ea5246d934a9be7fa670116a5f8edee77a80bb00
 PKG_SOURCE_URL:=https://github.com/bluk/nu_plugin_from_bencode
-PKG_MIRROR_HASH:=e2feb9401302312da7c6b6e06d7c190131c60580ffd6dd8841abf2135e2d69a4
+PKG_MIRROR_HASH:=cb8139196f6d71f521666c201490d1d46d0cc5f56a2c7055d6dd28c2009b5d17
+
+PKG_VERSION:=$(PKG_REAL_VERSION)_git$(subst -,,$(PKG_SOURCE_DATE))~$(call version_abbrev,$(PKG_SOURCE_VERSION))
 
 PKG_LICENSE:=Apache-2.0 MIT
 PKG_LICENSE_FILES:=LICENSE-APACHE LICENSE-MIT
@@ -19,7 +22,7 @@ PKG_LICENSE_FILES:=LICENSE-APACHE LICENSE-MIT
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0438 iana-time-zone-0161
+PKG_BUILD_DEPENDS += chrono-0440 getrandom-0216 iana-time-zone-0163
 
 define Package/nu-plugin-from-bencode
   SECTION:=utils
