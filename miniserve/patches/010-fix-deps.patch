@@ -9,7 +9,7 @@
  chrono-humanize = "0.2"
  clap = { version = "4", features = ["derive", "cargo", "wrap_help", "deprecated", "env"] }
  clap_complete = "4"
-@@ -83,3 +83,8 @@ url = "2"
+@@ -83,3 +83,11 @@ url = "2"
  [target.'cfg(not(windows))'.dev-dependencies]
  # fake_tty does not support Windows for now
  fake-tty = "0.3.1"
@@ -18,3 +18,6 @@
 +# localtime/zoneinfo
 +chrono = { path = "../chrono-0.4.40" }
 +iana-time-zone = { path = "../iana-time-zone-0.1.61" }
++# all: no SYS_getrandom
++getrandom2 = { path = "../getrandom-0.2.15", package = "getrandom", version = "0.2.15" }
++getrandom3 = { path = "../getrandom-0.3.1", package = "getrandom", version = "0.3.1" }
