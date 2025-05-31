@@ -2,15 +2,17 @@
 #
 # Copyright (C) 2024-2025 Entware
 
+# XXX downgrade ( v0.1.3 - ~15MB; since v0.1.4 - ~160MB)
+
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rgit
-PKG_VERSION:=0.1.5
+PKG_VERSION:=0.1.3
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/w4/rgit/tar.gz/refs/tags/$(PKG_VERSION)?
-PKG_HASH:=b42464a32fa30b7b2e8c7023c6414240e1eb61a9cb213da8d70a2b07b3748bd7
+PKG_HASH:=3b89c5675020b03a3d10093260efcb3047ecae08a0e7498ace6022bce0ea96b0
 
 PKG_LICENSE:=WTFPL
 PKG_LICENSE_FILES:=LICENSE
