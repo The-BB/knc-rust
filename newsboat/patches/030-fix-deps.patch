@@ -11,7 +11,7 @@
  
 --- a/Cargo.toml
 +++ b/Cargo.toml
-@@ -7,3 +7,8 @@ members = [
+@@ -7,3 +7,11 @@ members = [
      "rust/http-test-server",
  ]
  resolver = "2"
@@ -20,3 +20,6 @@
 +# localtime/zoneinfo
 +chrono = { path = "../chrono-0.4.40" }
 +iana-time-zone = { path = "../iana-time-zone-0.1.61" }
++# all: no SYS_getrandom
++getrandom2 = { path = "../getrandom-0.2.15", package = "getrandom", version = "0.2.15" }
++getrandom3 = { path = "../getrandom-0.3.1", package = "getrandom", version = "0.3.1" }
