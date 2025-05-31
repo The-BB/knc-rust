@@ -9,7 +9,7 @@
  
  [target.'cfg(not(target_has_atomic = "64"))'.dependencies]
  portable-atomic = "1.4"
-@@ -102,3 +102,8 @@ Dust is meant to give you an instant ove
+@@ -102,3 +102,11 @@ Dust is meant to give you an instant ove
  disk space without requiring sort or head. Dust will print a maximum of one
  'Did not have permissions message'.
  """
@@ -18,3 +18,6 @@
 +# localtime/zoneinfo
 +chrono = { path = "../chrono-0.4.40" }
 +iana-time-zone = { path = "../iana-time-zone-0.1.61" }
++# all: no SYS_getrandom
++getrandom2 = { path = "../getrandom-0.2.15", package = "getrandom", version = "0.2.15" }
++getrandom3 = { path = "../getrandom-0.3.1", package = "getrandom", version = "0.3.1" }
