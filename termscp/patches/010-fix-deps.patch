@@ -19,7 +19,7 @@
  open = "^5.0"
  rand = "^0.9"
  regex = "^1"
-@@ -116,3 +117,14 @@ incremental = true
+@@ -116,3 +117,15 @@ incremental = true
  
  [profile.release]
  strip = true
@@ -31,6 +31,7 @@
 +# mips/mipsel: error[E0432]: unresolved import `std::sync::atomic::AtomicU64`
 +nucleo = { path = "../nucleo-0.5.0" }
 +# all: no SYS_getrandom
-+getrandom = { path = "../getrandom-0.2.15" }
++getrandom2 = { path = "../getrandom-0.2.15", package = "getrandom", version = "0.2.15" }
++getrandom3 = { path = "../getrandom-0.3.2", package = "getrandom", version = "0.3.2" }
 +# all: cannot be used when making a shared object; recompile with -fPIC
 +crc64fast-nvme = { path = "../crc64fast-nvme-1.2.0" }
