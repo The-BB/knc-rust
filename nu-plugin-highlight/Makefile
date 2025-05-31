@@ -1,17 +1,19 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2024 Entware
+# Copyright (C) 2024-2025 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=nu-plugin-highlight
-PKG_VERSION:=1.4.2
+PKG_VERSION:=1.4.5
 PKG_RELEASE:=1
 
+NU_VERSION:=0.104.0
+
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=v$(PKG_VERSION)+0.101.0
+PKG_SOURCE_VERSION:=v$(PKG_VERSION)+$(NU_VERSION)
 PKG_SOURCE_URL:=https://github.com/cptpiepmatz/nu-plugin-highlight
-PKG_MIRROR_HASH:=ce9ec302387170015ee5fbc51a3d4f766af120606fe5a3c01380d503bc0a9f24
+PKG_MIRROR_HASH:=2055d326f8c4282ed742fc30fffbaf9b7b1a5a9e5290430ac7a3fda56e603c94
 
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
@@ -19,7 +21,7 @@ PKG_LICENSE_FILES:=LICENSE
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0438 iana-time-zone-0161
+PKG_BUILD_DEPENDS += chrono-0440 getrandom-0216 iana-time-zone-0163
 
 define Package/nu-plugin-highlight
   SECTION:=utils
