@@ -33,7 +33,7 @@
  
  [workspace]
  members = [
-@@ -127,3 +131,8 @@ singlepass = ["zellij-server/singlepass"
+@@ -127,3 +131,11 @@ singlepass = ["zellij-server/singlepass"
  # uncomment this when developing plugins in the Zellij UI to make plugin compilation faster
  # [profile.dev.package."*"]
  # opt-level = 3
@@ -42,3 +42,6 @@
 +# localtime/zoneinfo
 +chrono = { path = "../chrono-0.4.39" }
 +iana-time-zone = { path = "../iana-time-zone-0.1.61" }
++# all: no SYS_getrandom
++getrandom2 = { path = "../getrandom-0.2.15", package = "getrandom", version = "0.2.15" }
++getrandom3 = { path = "../getrandom-0.3.1", package = "getrandom", version = "0.3.1" }
