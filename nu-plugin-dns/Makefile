@@ -1,17 +1,17 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2024 Entware
+# Copyright (C) 2024-2025 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=nu-plugin-dns
-PKG_VERSION:=3.0.6
+PKG_VERSION:=4.0.1
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=v$(PKG_VERSION)
 PKG_SOURCE_URL:=https://github.com/dead10ck/nu_plugin_dns
-PKG_MIRROR_HASH:=7732d65379a6a769d9e28f7221725dfc7a7794165630cc1a6aae4ae85319f7f3
+PKG_MIRROR_HASH:=730feaa738e38188a5e07d8cdb5fba339162fbebdbfd291c0c14a831973c8c9d
 
 PKG_LICENSE:=MPL-2.0
 PKG_LICENSE_FILES:=LICENSE
@@ -19,7 +19,7 @@ PKG_LICENSE_FILES:=LICENSE
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0438 hickory-dns iana-time-zone-0161 quinn-0104
+PKG_BUILD_DEPENDS += chrono-0440 getrandom-0216 getrandom-033 iana-time-zone-0163
 
 define Package/nu-plugin-dns
   SECTION:=utils
