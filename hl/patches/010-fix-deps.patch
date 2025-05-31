@@ -9,7 +9,7 @@
  chrono-tz = { version = "0.10", features = ["serde"] }
  clap = { version = "4", features = ["wrap_help", "derive", "env", "string"] }
  clap_complete = "4"
-@@ -126,3 +126,10 @@ lto = true
+@@ -126,3 +126,11 @@ lto = true
  [[bench]]
  name = "bench"
  harness = false
@@ -19,4 +19,5 @@
 +chrono = { path = "../chrono-0.4.41" }
 +iana-time-zone = { path = "../iana-time-zone-0.1.63" }
 +# all: no SYS_getrandom
-+getrandom = { path = "../getrandom-0.2.15" }
++getrandom2 = { path = "../getrandom-0.2.15", package = "getrandom", version = "0.2.15" }
++getrandom3 = { path = "../getrandom-0.3.2", package = "getrandom", version = "0.3.2" }
