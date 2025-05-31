@@ -18,7 +18,7 @@
  
  [dev-dependencies]
  criterion = { version = "0.5.1", features = ["html_reports"] }
-@@ -161,3 +161,10 @@ panic = 'abort'
+@@ -161,3 +161,11 @@ panic = 'abort'
  [[bench]]
  name = "my_benchmark"
  harness = false
@@ -28,4 +28,5 @@
 +chrono = { path = "../chrono-0.4.41" }
 +iana-time-zone = { path = "../iana-time-zone-0.1.63" }
 +# all: no SYS_getrandom
-+getrandom = { path = "../getrandom-0.2.16" }
++getrandom2 = { path = "../getrandom-0.2.16", package = "getrandom", version = "0.2.16" }
++getrandom3 = { path = "../getrandom-0.3.2", package = "getrandom", version = "0.3.2" }
