@@ -6,7 +6,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=hex-patch
 PKG_VERSION:=1.11.2
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/Etto48/HexPatch/tar.gz/refs/tags/v$(PKG_VERSION)?
@@ -18,7 +18,8 @@ PKG_LICENSE_FILES:=LICENSE
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0440 getrandom-0215 flurry-052 iana-time-zone-0161 \
+PKG_BUILD_DEPENDS += \
+	chrono-0440 getrandom-0215 getrandom-031 flurry-052 iana-time-zone-0161 \
 	russh-sftp-211 seize-033
 PKG_UNPACK += --strip-components=1 -C $(PKG_BUILD_DIR)
 

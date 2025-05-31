@@ -9,7 +9,7 @@
  serde = { version = "1.0.219", features = ["derive"] }
  serde_json = "1.0.140"
  symbolic-demangle = "12.15.5"
-@@ -43,5 +43,24 @@ tempfile = "3.19.1"
+@@ -43,5 +43,25 @@ tempfile = "3.19.1"
  tokio = "1.44.2"
  termbg = "0.6.2"
  
@@ -33,4 +33,6 @@
 +chrono = { path = "../chrono-0.4.40" }
 +iana-time-zone = { path = "../iana-time-zone-0.1.61" }
 +# all: no SYS_getrandom
-+getrandom = { path = "../getrandom-0.2.15" }
++# all: no SYS_getrandom
++getrandom2 = { path = "../getrandom-0.2.15", package = "getrandom", version = "0.2.15" }
++getrandom3 = { path = "../getrandom-0.3.1", package = "getrandom", version = "0.3.1" }
