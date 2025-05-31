@@ -8,7 +8,7 @@
  
  clap = { version = "4.5.32", features = ["derive", "env"] }
  
-@@ -51,3 +52,8 @@ conf-files = [
+@@ -51,3 +52,11 @@ conf-files = [
  section = "net"
  maintainer-scripts = "dist/debian/maintainer-scripts"
  systemd-units = { unit-scripts = "dist/shared/lib/systemd/system" }
@@ -17,3 +17,6 @@
 +# localtime/zoneinfo
 +chrono = { path = "../chrono-0.4.40" }
 +iana-time-zone = { path = "../iana-time-zone-0.1.61" }
++# all: no SYS_getrandom
++getrandom2 = { path = "../getrandom-0.2.15", package = "getrandom", version = "0.2.15" }
++getrandom3 = { path = "../getrandom-0.3.2", package = "getrandom", version = "0.3.2" }
