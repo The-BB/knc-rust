@@ -16,6 +16,9 @@ PKG_MIRROR_HASH:=730feaa738e38188a5e07d8cdb5fba339162fbebdbfd291c0c14a831973c8c9
 PKG_LICENSE:=MPL-2.0
 PKG_LICENSE_FILES:=LICENSE
 
+# XXX musl: error: format not a string literal
+PKG_FORTIFY_SOURCE:=0
+
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
