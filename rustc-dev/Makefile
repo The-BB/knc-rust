@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rustc
-PKG_VERSION:=1.87.0
+PKG_VERSION:=1.88.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-src.tar.gz
 PKG_SOURCE_URL:=https://static.rust-lang.org/dist
-PKG_HASH:=149bb9fd29be592da4e87900fc68f0629a37bf6850b46339dd44434c04fd8e76
+PKG_HASH:=3a97544434848ae3d193d1d6bc83d6f24cb85c261ad95f955fde47ec64cfcfbe
 
 HOST_BUILD_DIR:=$(BUILD_DIR_HOST)/$(PKG_NAME)-dev-$(PKG_VERSION)
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-dev-$(PKG_VERSION)
@@ -52,7 +52,7 @@ endif
 
 define Host/Configure
 	( \
-		echo 'change-id = 140859'; \
+		echo 'change-id = 142918'; \
 		echo '[llvm]'; \
 		echo 'download-ci-llvm = true'; \
 		echo '[build]'; \
@@ -64,6 +64,7 @@ define Host/Configure
 		echo 'python = "$(STAGING_DIR_HOST)/bin/python3"'; \
 		echo 'cargo-native-static = true'; \
 		echo 'compiler-docs = false'; \
+		echo 'compiletest-use-stage0-libtest = false'; \
 		echo 'docs = false'; \
 		echo 'extended = true'; \
 		echo 'submodules = false'; \
@@ -129,7 +130,7 @@ endef
 
 define Build/Configure
 	( \
-		echo 'change-id = 140859'; \
+		echo 'change-id = 142918'; \
 		echo 'profile = "library"'; \
 		echo '[llvm]'; \
 		echo 'download-ci-llvm = true'; \
@@ -143,6 +144,7 @@ define Build/Configure
 		echo 'rustc = "$(STAGING_DIR)/host/bin/rustc"'; \
 		echo 'rustfmt = "$(STAGING_DIR)/host/bin/rustfmt"'; \
 		echo 'compiler-docs = false'; \
+		echo 'compiletest-use-stage0-libtest = false'; \
 		echo 'docs = false'; \
 		echo 'extended = false'; \
 		echo 'full-bootstrap = false'; \
