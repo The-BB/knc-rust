@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rustc
-PKG_VERSION:=1.87.0
+PKG_VERSION:=1.88.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-src.tar.gz
 PKG_SOURCE_URL:=https://static.rust-lang.org/dist
-PKG_HASH:=149bb9fd29be592da4e87900fc68f0629a37bf6850b46339dd44434c04fd8e76
+PKG_HASH:=3a97544434848ae3d193d1d6bc83d6f24cb85c261ad95f955fde47ec64cfcfbe
 
 PKG_LICENSE:=Apache-2.0 MIT
 PKG_LICENSE_FILES:=LICENSE-APACHE LICENSE-MIT
@@ -55,7 +55,7 @@ NATIVE_TARGET_ARCH:=$(subst aarch64,AArch64,$(subst x86_64,X86,$(HOST_ARCH)))
 
 define Build/Configure
 	( \
-		echo 'change-id = 140859'; \
+		echo 'change-id = 142918'; \
 		echo '[llvm]'; \
 		echo 'download-ci-llvm = false'; \
 		echo 'allow-old-toolchain = true'; \
@@ -87,6 +87,7 @@ define Build/Configure
 		echo 'rustc = "$(STAGING_DIR)/host/bin/rustc"'; \
 		echo 'rustfmt = "$(STAGING_DIR)/host/bin/rustfmt"'; \
 		echo 'compiler-docs = false'; \
+		echo 'compiletest-use-stage0-libtest = false'; \
 		echo 'docs = false'; \
 		echo 'extended = true'; \
 		echo 'full-bootstrap = false'; \
