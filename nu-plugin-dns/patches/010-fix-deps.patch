@@ -1,30 +1,27 @@
 --- a/Cargo.toml
 +++ b/Cargo.toml
-@@ -28,10 +28,10 @@ codegen-units = 1
- lto = "thin"
- 
+@@ -30,8 +30,8 @@ lto = "thin"
  [dependencies]
--chrono = { version = "0.4", features = [ "std" ], default-features = false }
-+chrono = { version = "=0.4.40", features = [ "std" ], default-features = false }
+ chrono = { version = "0.4", features = [ "std" ], default-features = false }
  futures-util = "0.3.31"
--nu-plugin = "0.104.0"
--nu-protocol = "0.104.0"
-+nu-plugin = "0.104.1"
-+nu-protocol = "0.104.1"
+-nu-plugin = "0.106.0"
+-nu-protocol = "0.106.0"
++nu-plugin = "0.106.1"
++nu-protocol = "0.106.1"
  
- tokio = "1.45.0"
+ tokio = "1.46.1"
  tracing = "0.1"
-@@ -89,3 +89,13 @@ features = [
+@@ -86,3 +86,13 @@ features = [
    "quic-ring",
    "h3-ring",
  ]
 +
 +[patch.crates-io]
-+nu-plugin = { path = "../nushell-0.104.1/crates/nu-plugin" }
-+nu-protocol = { path = "../nushell-0.104.1/crates/nu-protocol" }
++nu-plugin = { path = "../nushell-0.106.1/crates/nu-plugin" }
++nu-protocol = { path = "../nushell-0.106.1/crates/nu-protocol" }
 +# localtime/zoneinfo
 +chrono = { path = "../chrono-0.4.40" }
-+iana-time-zone = { path = "../iana-time-zone-0.1.63" }
++iana-time-zone = { path = "../iana-time-zone-0.1.61" }
 +# all: no SYS_getrandom
 +getrandom2 = { path = "../getrandom-0.2.16", package = "getrandom", version = "0.2.16" }
 +getrandom3 = { path = "../getrandom-0.3.3", package = "getrandom", version = "0.3.3" }

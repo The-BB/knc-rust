@@ -1,20 +1,23 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2024-2025 Entware
+# Copyright (C) 2024-2026 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=nu-plugin-dns
-PKG_VERSION:=4.0.1
-PKG_RELEASE:=1
+PKG_VERSION:=4.0.3
+PKG_RELEASE:=2
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=v$(PKG_VERSION)
 PKG_SOURCE_URL:=https://github.com/dead10ck/nu_plugin_dns
-PKG_MIRROR_HASH:=730feaa738e38188a5e07d8cdb5fba339162fbebdbfd291c0c14a831973c8c9d
+PKG_MIRROR_HASH:=60532eac6550265238798863f1713ea5f4aab1bff5f0bc12230aff0c80eb7dbb
 
 PKG_LICENSE:=MPL-2.0
 PKG_LICENSE_FILES:=LICENSE
+
+NU_VERSION:=$(shell grep '^PKG_VERSION' ../nushell/Makefile | cut -d'=' -f2-)
+NU_RELEASE:=$(shell grep '^PKG_RELEASE' ../nushell/Makefile | cut -d'=' -f2-)
 
 # XXX musl: error: format not a string literal
 PKG_FORTIFY_SOURCE:=0
@@ -22,7 +25,8 @@ PKG_FORTIFY_SOURCE:=0
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0440 getrandom-0216 getrandom-033 iana-time-zone-0163
+PKG_BUILD_DEPENDS += \
+	chrono-0440 getrandom-0216 getrandom-033 iana-time-zone-0161 nushell
 
 define Package/nu-plugin-dns
   SECTION:=utils
@@ -30,7 +34,7 @@ define Package/nu-plugin-dns
   SUBMENU:=Shells
   TITLE:=A DNS utility for nushell
   URL:=https://github.com/dead10ck/nu_plugin_dns
-  DEPENDS:=+nushell
+  EXTRA_DEPENDS:=nushell (=$(NU_VERSION)-r$(NU_RELEASE))
 endef
 
 define Package/nu-plugin-dns/description
