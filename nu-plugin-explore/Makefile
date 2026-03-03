@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2024-2025 Entware
+# Copyright (C) 2024-2026 Entware
 
 include $(TOPDIR)/rules.mk
 
@@ -11,15 +11,19 @@ PKG_RELEASE:=1
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=fa5ab698463489bfc782077915f636661712a217
 PKG_SOURCE_URL:=https://github.com/amtoine/nu_plugin_explore
-PKG_MIRROR_HASH:=777b6fd98df74bd5741fb7beca772c0a8c69d903693f73ad763b01090ec15d1f
+PKG_MIRROR_HASH:=8db163ce37f8278800977ae7edd40708bdfd8bb21cfb2edd61ef959cbe934d5c
 
 PKG_LICENSE:=GPL-3.0-or-later
 PKG_LICENSE_FILES:=LICENSE
 
+NU_VERSION:=$(shell grep '^PKG_VERSION' ../nushell/Makefile | cut -d'=' -f2-)
+NU_RELEASE:=$(shell grep '^PKG_RELEASE' ../nushell/Makefile | cut -d'=' -f2-)
+
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0440 getrandom-0215 iana-time-zone-0161
+PKG_BUILD_DEPENDS += \
+	chrono-0440 getrandom-0215 iana-time-zone-0161 nushell
 
 define Package/nu-plugin-explore
   SECTION:=utils
@@ -27,7 +31,8 @@ define Package/nu-plugin-explore
   SUBMENU:=Shells
   TITLE:=A fast structured data explorer for Nushell
   URL:=https://github.com/amtoine/nu_plugin_explore
-  DEPENDS:=+nushell
+  DEPENDS:=@BROKEN
+  EXTRA_DEPENDS:=nushell (=$(NU_VERSION)-r$(NU_RELEASE))
 endef
 
 define Package/nu-plugin-explore/description
