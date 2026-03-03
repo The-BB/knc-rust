@@ -1,12 +1,12 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2024-2025 Entware
+# Copyright (C) 2024-2026 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=nu-plugin-net
 PKG_VERSION:=1.10.0
-PKG_RELEASE:=1
+PKG_RELEASE:=3
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=$(PKG_VERSION)
@@ -16,10 +16,14 @@ PKG_MIRROR_HASH:=87c68d12ba6aa6bf5aaeb52b5a54b5c86ac86b8597ea221a520839bf5feda06
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
 
+NU_VERSION:=$(shell grep '^PKG_VERSION' ../nushell/Makefile | cut -d'=' -f2-)
+NU_RELEASE:=$(shell grep '^PKG_RELEASE' ../nushell/Makefile | cut -d'=' -f2-)
+
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0440 getrandom-0216 iana-time-zone-0163
+PKG_BUILD_DEPENDS += \
+	chrono-0440 getrandom-0216 iana-time-zone-0161 nushell
 
 define Package/nu-plugin-net
   SECTION:=utils
@@ -27,7 +31,7 @@ define Package/nu-plugin-net
   SUBMENU:=Shells
   TITLE:=nu plugin to list system network interfaces
   URL:=https://fennewald.github.io/nu_plugin_net/
-  DEPENDS:=+nushell
+  EXTRA_DEPENDS:=nushell (=$(NU_VERSION)-r$(NU_RELEASE))
   PROVIDES:=nu-plugin-pnet
 endef
 
