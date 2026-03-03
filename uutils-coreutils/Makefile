@@ -1,16 +1,16 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2024-2025 Entware
+# Copyright (C) 2024-2026 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=coreutils
-PKG_VERSION:=0.1.0
+PKG_VERSION:=0.6.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/uutils/coreutils/tar.gz/refs/tags/$(PKG_VERSION)?
-PKG_HASH:=55c528f2b53c1b30cb704550131a806e84721c87b3707b588a961a6c97f110d8
+PKG_HASH:=f751b8209ec05ae304941a727e42a668dcc45674986252f44d195ed43ccfad2f
 
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
@@ -18,7 +18,7 @@ PKG_LICENSE_FILES:=LICENSE
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0441 getrandom-0215 getrandom-031 iana-time-zone-0163
+PKG_BUILD_DEPENDS += chrono-0443 getrandom-0217 getrandom-034 iana-time-zone-0164
 
 # XXX without:  chcon & runcon (depends on SELinux);
 #		stdbuf (fail to compile on several platforms).
@@ -31,7 +31,7 @@ COREUTILS_APPS:= \
 	echo env expand expr \
 	factor false fmt fold \
 	groups \
-	hashsum head hostid hostname \
+	head hostid hostname \
 	id install \
 	join \
 	kill \
@@ -41,7 +41,7 @@ COREUTILS_APPS:= \
 	od \
 	paste pathchk pr printenv printf ptx pwd \
 	readlink realpath rm rmdir \
-	seq shred shuf sleep sort split stat sum sync \
+	seq shred shuf sleep sort split stat stty sum sync \
 	tac tail tee test timeout touch tr true truncate tsort tty \
 	uname unexpand uniq unlink \
 	vdir \
@@ -103,6 +103,10 @@ endef
 
 RUSTC_VARS += PROJECT_NAME_FOR_VERSION_STRING="uutils coreutils"
 
+ifeq ($(CONFIG_x86_64),y)
+RUSTFLAGS += -C relocation-model=pic
+endif
+
 ifeq ($(BUILD_VARIANT),apps)
   CARGO_ARGS += --features="$(COREUTILS_APPS)"
 endif
@@ -119,11 +123,11 @@ ifeq ($(BUILD_VARIANT),apps)
 else
   define Build/Compile/Cargo
 	for bins in $(COREUTILS_APPS); do \
-		cd $(CARGO_BUILD_DIR) && \
+		cd $(CARGO_SOURCE_DIR) && \
 		$(RUSTC_VARS) RUSTFLAGS="$(RUSTFLAGS)" \
 		cargo build $(CARGO_ARGS) \
 		--profile $(CARGO_PKG_PROFILE) \
-		--manifest-path $(CARGO_BUILD_DIR)/Cargo.toml \
+		--manifest-path $(CARGO_SOURCE_DIR)/Cargo.toml \
 		--artifact-dir $(CARGO_INSTALL_ROOT)/bin \
 		$(if $(findstring s,$(OPENWRT_VERBOSE)),--verbose) \
 		-p uu_$$$$bins; \
