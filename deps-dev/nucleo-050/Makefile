@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2024-2025 Entware
+# Copyright (C) 2024-2026 Entware
 
 # XXX mips(el) (helix)
 
@@ -14,7 +14,7 @@ PKG_SOURCE_PROTO:=git
 PKG_SOURCE_DATE:=2024-04-02
 PKG_SOURCE_VERSION:=a82a24999b899e588a73da830d3a6957f0fbea2b
 PKG_SOURCE_URL:=https://github.com/helix-editor/nucleo
-PKG_MIRROR_HASH:=e2706d20f27b492a1eb62d0da6d48582918beced20f3392d08b94032e6f575ed
+PKG_MIRROR_HASH:=c2bbed7c3184b8930e06c17039e6991352fff21f911adf38cd0271c15bb3bc56
 
 PKG_LICENSE:=MPL-2.0
 PKG_LICENSE_FILES:=LICENSE
@@ -36,7 +36,6 @@ define Package/nucleo-$(PKG_VERSION)/description
 endef
 
 Build/Compile:=:
-MoveLibs:=:
 Build/InstallDev:=:
 
 $(eval $(call BuildPackage,nucleo-$(PKG_VERSION)))
