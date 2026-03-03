@@ -1,25 +1,20 @@
 --- a/Cargo.toml
 +++ b/Cargo.toml
-@@ -9,6 +9,20 @@ version = "0.2.11"
+@@ -9,6 +9,15 @@ version = "0.2.11"
  
  [dependencies]
  nu-ansi-term = "0.50.1"
--nu-plugin = "0.104.0"
--nu-protocol = "0.104.0"
-+nu-plugin = "0.104.1"
-+nu-protocol = "0.104.1"
+-nu-plugin = "0.105.1"
+-nu-protocol = "0.105.1"
++nu-plugin = "0.106.1"
++nu-protocol = "0.106.1"
  periodic-table-on-an-enum = "0.3.2"
 +
-+[dev-dependencies]
-+# error[E0635]: unknown feature `stdsimd`
-+ahash = "0.8.11"
-+
 +[patch.crates-io]
-+nu-plugin = { path = "../nushell-0.104.1/crates/nu-plugin" }
-+nu-protocol = { path = "../nushell-0.104.1/crates/nu-protocol" }
++nu-plugin = { path = "../nushell-0.106.1/crates/nu-plugin" }
++nu-protocol = { path = "../nushell-0.106.1/crates/nu-protocol" }
 +# localtime/zoneinfo
 +chrono = { path = "../chrono-0.4.40" }
 +iana-time-zone = { path = "../iana-time-zone-0.1.61" }
 +# all: no SYS_getrandom
-+getrandom2 = { path = "../getrandom-0.2.15", package = "getrandom", version = "0.2.15" }
-+getrandom3 = { path = "../getrandom-0.3.3", package = "getrandom", version = "0.3.3" }
++getrandom = { path = "../getrandom-0.2.16" }
