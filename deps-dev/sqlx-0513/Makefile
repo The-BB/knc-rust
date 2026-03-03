@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2024 Entware
+# Copyright (C) 2024-2026 Entware
 
 # XXX mips(el) (gobang)
 
@@ -14,7 +14,7 @@ PKG_SOURCE_PROTO:=git
 PKG_SOURCE_DATE:=2022-04-15
 PKG_SOURCE_VERSION:=6be16b4d1b55b20985b8b762956ab443f9481c3d
 PKG_SOURCE_URL:=https://github.com/launchbadge/sqlx
-PKG_MIRROR_HASH:=63b12d20157e5743b169b679a9f399309fd3279224c4aae2dce361d18a7988ee
+PKG_MIRROR_HASH:=0c0bd6eaf70ef090254b1e3561df62a97fecaf4581edae42f8213e2f8bfc1974
 
 PKG_LICENSE:=Apache-2.0 MIT
 PKG_LICENSE_FILES:=LICENSE-APACHE LICENSE-MIT
@@ -22,7 +22,7 @@ PKG_LICENSE_FILES:=LICENSE-APACHE LICENSE-MIT
 include $(INCLUDE_DIR)/package.mk
 include ../../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0431
+PKG_BUILD_DEPENDS += chrono-0431 getrandom-0216 getrandom-034 iana-time-zone-0159
 
 define Package/sqlx-$(PKG_VERSION)
   SECTION:=devel
@@ -47,7 +47,6 @@ endef
 #endif
 
 Build/Compile:=:
-MoveLibs:=:
 Build/InstallDev:=:
 
 $(eval $(call BuildPackage,sqlx-$(PKG_VERSION)))
