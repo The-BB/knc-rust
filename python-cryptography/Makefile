@@ -1,15 +1,15 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2024 Entware
+# Copyright (C) 2024-2026 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cryptography
-PKG_VERSION:=43.0.1
+PKG_VERSION:=46.0.2
 PKG_RELEASE:=1
 
 PYPI_NAME:=cryptography
-PKG_HASH:=203e92a75716d8cfb491dc47c79e17d0d9207ccffcbcb35f598fbe463ae3444d
+PKG_HASH:=21b6fc8c71a3f9a604f028a329e5560009cc4a3a828bfea5fcba8eb7647d88fe
 
 PKG_LICENSE:=Apache-2.0 BSD-3-Clause
 PKG_LICENSE_FILES:=LICENSE LICENSE.APACHE LICENSE.BSD LICENSE.PSF
@@ -36,7 +36,6 @@ define Package/python3-cryptography
 	+libopenssl \
 	+libopenssl-legacy \
 	+python3-cffi \
-	+python3-distutils \
 	+python3-email \
 	+python3-urllib \
 	+python3-uuid
@@ -45,18 +44,19 @@ endef
 define Package/python3-cryptography/description
   cryptography is a package which provides cryptographic recipes and primitives
   to Python developers. Our goal is for it to be your "cryptographic standard
-  library". It supports Python 3.6+ and PyPy3 7.2+.
+  library".
 endef
 
-RUSTFLAGS += -C relocation-model=pic
+CARGO_PKG_CONFIG_VARS += \
+	PYO3_CROSS_INCLUDE_DIR=$(PYTHON3_INC_DIR)
 
-TARGET_CPPFLAGS += -I$(PYTHON3_INC_DIR)
+RUSTFLAGS += -C relocation-model=pic
 
 define Package/python3-cryptography/postrm
 #!/bin/sh
 
-rm -rf $(PYTHON3_PKG_DIR)/$(PYPI_NAME)
-rm -rf $(PYTHON3_PKG_DIR)/$(PYPI_NAME)-$(PKG_VERSION).dist-info
+rm -rf $(PYTHON3_PKG_DIR)/$(PYPI_NAME) || true
+rm -rf $(PYTHON3_PKG_DIR)/$(PYPI_NAME)-$(PKG_VERSION).dist-info || true
 endef
 
 $(eval $(call Py3Package,python3-cryptography))
