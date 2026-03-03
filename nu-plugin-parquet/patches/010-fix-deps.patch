@@ -4,41 +4,42 @@
  
  [dependencies]
  # nushell dependencies
--nu-plugin = "0.104.0"
--nu-protocol = "0.104.0"
--nu-path = "0.104.0"
-+nu-plugin = "0.104.1"
-+nu-protocol = "0.104.1"
-+nu-path = "0.104.1"
+-nu-plugin = "0.106.0"
+-nu-protocol = "0.106.0"
+-nu-path = "0.106.0"
++nu-plugin = "0.106.1"
++nu-protocol = "0.106.1"
++nu-path = "0.106.1"
  
  # for local development, you can use a path dependency
  # nu-plugin = { path = "../nushell/crates/nu-plugin", version = "0.98.0" }
-@@ -21,11 +21,11 @@ nu-path = "0.104.0"
+@@ -21,11 +21,11 @@ nu-path = "0.106.0"
  # nu-path = { path = "../nushell/crates/nu-path", version = "0.98.0" }
  
  bytes = "1.10.1"
 -chrono = { version = "0.4.41", features = ["serde"] }
-+chrono = { version = "=0.4.40", features = ["serde"] }
- parquet = "55.0.0"
++chrono = { version = "0.4.40", features = ["serde"] }
+ parquet = "55.2.0"
  
  [dev-dependencies]
--nu-plugin-test-support = "0.104.0"
-+nu-plugin-test-support = "0.104.1"
+-nu-plugin-test-support = "0.106.0"
++nu-plugin-test-support = "0.106.1"
  # nu-plugin-test-support = { path = "../nushell/crates/nu-plugin-test-support" }
  
  [profile.release]
-@@ -35,3 +35,14 @@ lto = "thin"
+@@ -35,3 +35,15 @@ lto = "thin"
  
  [profile.dev]
  opt-level = 0
 +
 +[patch.crates-io]
-+nu-path = { path = "../nushell-0.104.1/crates/nu-path" }
-+nu-plugin = { path = "../nushell-0.104.1/crates/nu-plugin" }
-+nu-plugin-test-support = { path = "../nushell-0.104.1/crates/nu-plugin-test-support" }
-+nu-protocol = { path = "../nushell-0.104.1/crates/nu-protocol" }
++nu-path = { path = "../nushell-0.106.1/crates/nu-path" }
++nu-plugin = { path = "../nushell-0.106.1/crates/nu-plugin" }
++nu-plugin-test-support = { path = "../nushell-0.106.1/crates/nu-plugin-test-support" }
++nu-protocol = { path = "../nushell-0.106.1/crates/nu-protocol" }
 +# localtime/zoneinfo
 +chrono = { path = "../chrono-0.4.40", package = "chrono", version = "0.4.40" }
 +iana-time-zone = { path = "../iana-time-zone-0.1.61" }
 +# all: no SYS_getrandom
-+getrandom = { path = "../getrandom-0.2.15" }
++getrandom2 = { path = "../getrandom-0.2.16", package = "getrandom", version = "0.2.16" }
++getrandom3 = { path = "../getrandom-0.3.3", package = "getrandom", version = "0.3.3" }
