@@ -1,11 +1,6 @@
 --- a/Cargo.toml
 +++ b/Cargo.toml
-@@ -58,6 +58,16 @@ warpy = "0.3.54"
- 
- [dev-dependencies]
- serial_test = "2.0.0"
-+# localtime/zoneinfo
-+chrono = "=0.4.40"
+@@ -60,3 +60,11 @@ serial_test = "2.0.0"
  
  [lints.rust]
  unexpected_cfgs = { level = "warn", check-cfg = ["cfg(tarpaulin_include)"] }
