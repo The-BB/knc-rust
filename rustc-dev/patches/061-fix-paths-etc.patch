@@ -1,5 +1,5 @@
---- a/vendor/sysinfo-0.35.0/src/unix/linux/system.rs
-+++ b/vendor/sysinfo-0.35.0/src/unix/linux/system.rs
+--- a/vendor/sysinfo-0.37.0/src/unix/linux/system.rs
++++ b/vendor/sysinfo-0.37.0/src/unix/linux/system.rs
 @@ -384,6 +384,7 @@ impl SystemInner {
      pub(crate) fn name() -> Option<String> {
          get_system_info_linux(
@@ -24,14 +24,11 @@
              Path::new("/etc/os-release"),
              Path::new(""),
          )
---- a/vendor/sysinfo-0.35.0/src/unix/users.rs
-+++ b/vendor/sysinfo-0.35.0/src/unix/users.rs
-@@ -128,7 +128,7 @@ pub(crate) fn get_users(users: &mut Vec<
- 
-     let mut s = String::new();
- 
--    let _ = File::open("/etc/passwd").and_then(|mut f| f.read_to_string(&mut s));
-+    let _ = File::open("/opt/etc/passwd").and_then(|mut f| f.read_to_string(&mut s));
-     for line in s.lines() {
-         let mut parts = line.split(':');
-         if let Some(username) = parts.next() {
+@@ -512,6 +515,7 @@ impl SystemInner {
+     pub(crate) fn distribution_id_like() -> Vec<String> {
+         system_info_as_list(get_system_info_linux(
+             InfoType::DistributionIDLike,
++            Path::new("/opt/etc/os-release"), // Entware
+             Path::new("/etc/os-release"),
+             Path::new(""),
+         ))

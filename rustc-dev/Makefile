@@ -1,16 +1,16 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2024-2025 Entware
+# Copyright (C) 2024-2026 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rustc
-PKG_VERSION:=1.88.0
+PKG_VERSION:=1.92.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-src.tar.gz
 PKG_SOURCE_URL:=https://static.rust-lang.org/dist
-PKG_HASH:=3a97544434848ae3d193d1d6bc83d6f24cb85c261ad95f955fde47ec64cfcfbe
+PKG_HASH:=9e0d2ca75c7e275fdc758255bf4b03afb3d65d1543602746907c933b6901c3b8
 
 HOST_BUILD_DIR:=$(BUILD_DIR_HOST)/$(PKG_NAME)-dev-$(PKG_VERSION)
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-dev-$(PKG_VERSION)
@@ -50,9 +50,28 @@ else
   RUSTC_TARGET_ARCH:=$(REAL_GNU_TARGET_NAME)
 endif
 
+PRE_BUILD_VERSION:=$(PKG_VERSION)
+PRE_BUILD_FILE:=rust-dev-$(PRE_BUILD_VERSION)-$(RUSTC_HOST_ARCH).tar.xz
+PRE_COMMIT_HASH:=ded5c06cf21d2b93bffd5d884aa6e96934ee4234
+DL_LLVM_DIR:=llvm-$(PRE_COMMIT_HASH)-false
+
+define Download/rust-dev
+  FILE:=$(PRE_BUILD_FILE)
+  URL:= \
+	https://ci-artifacts.rust-lang.org/rustc-builds/$(PRE_COMMIT_HASH) \
+	https://src.entware.net
+  HASH:=ee96e87db5432c6985722a1912aa222d295522cf7f48c7965d32cf84da079c17
+endef
+
+define Host/Prepare
+	$(INSTALL_DIR) $(DL_DIR)/$(PKG_NAME)/$(DL_LLVM_DIR)
+	$(CP) $(DL_DIR)/$(PRE_BUILD_FILE) $(DL_DIR)/$(PKG_NAME)/$(DL_LLVM_DIR)
+	$(call Host/Prepare/Default)
+endef
+
 define Host/Configure
 	( \
-		echo 'change-id = 142918'; \
+		echo 'change-id = 149758'; \
 		echo '[llvm]'; \
 		echo 'download-ci-llvm = true'; \
 		echo '[build]'; \
@@ -85,12 +104,14 @@ define Host/Configure
 		echo 'download-rustc = false'; \
 		echo 'incremental = false'; \
 		echo 'rpath = true'; \
+		echo 'parallel-frontend-threads = $(if $(findstring s,$(OPENWRT_VERBOSE)),1,0)'; \
 		echo '[target.$(RUSTC_HOST_ARCH)]'; \
 		echo 'ar = "ar"'; \
 		echo 'cc = "$(HOSTCC_NOCACHE)"'; \
 		echo 'cxx = "$(HOSTCXX_NOCACHE)"'; \
 		echo 'linker = "$(HOSTCC_NOCACHE)"'; \
 		echo 'ranlib = "ranlib"'; \
+		echo 'default-linker-linux-override = "off"'; \
 		echo '[dist]'; \
 		echo 'src-tarball = false'; \
 		echo 'compression-formats = ["gz"]'; \
@@ -119,6 +140,14 @@ define Host/Install
 	$(CP) $(HOST_BUILD_DIR)/install/lib/lib*.so* $(STAGING_DIR)/host/lib
 	$(CP) $(HOST_BUILD_DIR)/install/lib/rustlib/$(RUSTC_HOST_ARCH) \
 		 $(STAGING_DIR)/host/lib/rustlib
+	@( \
+		$(INSTALL_DIR) $(DL_DIR)/cargo; \
+		$(STAGING_DIR_HOST)/bin/sed \
+			-e "s,@RUSTC_HOST_ARCH@,$(RUSTC_HOST_ARCH)," \
+			-e "s,@HOST_CC@,$(HOSTCC_NOCACHE)," \
+			< files/cargo-config.toml \
+			> $(DL_DIR)/cargo/config.toml; \
+	)
 endef
 
 define Host/Clean
@@ -130,7 +159,7 @@ endef
 
 define Build/Configure
 	( \
-		echo 'change-id = 142918'; \
+		echo 'change-id = 149758'; \
 		echo 'profile = "library"'; \
 		echo '[llvm]'; \
 		echo 'download-ci-llvm = true'; \
@@ -167,12 +196,14 @@ define Build/Configure
 		echo 'download-rustc = false'; \
 		echo 'incremental = false'; \
 		echo 'rpath = false'; \
+		echo 'parallel-frontend-threads = $(if $(findstring s,$(OPENWRT_VERBOSE)),1,0)'; \
 		echo '[target.$(RUSTC_TARGET_ARCH)]'; \
 		echo 'ar = "$(TARGET_CROSS)ar"'; \
 		echo 'cc = "$(TARGET_CROSS)gcc"'; \
 		echo 'cxx = "$(TARGET_CROSS)g++"'; \
 		echo 'linker = "$(TARGET_CROSS)gcc"'; \
 		echo 'ranlib = "$(TARGET_CROSS)ranlib"'; \
+		echo 'default-linker-linux-override = "off"'; \
 		$(if $(CONFIG_USE_MUSL),echo 'crt-static = false'; ) \
 		echo '[dist]'; \
 		echo 'src-tarball = false'; \
@@ -199,19 +230,12 @@ define Build/InstallDev
 	$(INSTALL_DIR) $(2)/include $(2)/lib/rustlib
 	$(CP) $(PKG_INSTALL_DIR)/opt/lib/rustlib/$(RUSTC_TARGET_ARCH) \
 		 $(2)/lib/rustlib
-	$(INSTALL_DIR) $(2)/share/cargo
-	$(CP) ./files/cargo-config.toml $(2)/share/cargo/config.toml
-	$(SED) 's,@RUSTC_HOST_ARCH@,$(RUSTC_HOST_ARCH),; \
-		s,@HOST_CC@,$(HOSTCC_NOCACHE),; \
-		s,@RUSTC_TARGET_ARCH@,$(RUSTC_TARGET_ARCH),; \
-		s,@TARGET_CC@,$(TARGET_CC),' \
-			$(2)/share/cargo/config.toml
 endef
 
 #define Build/Clean
 #	rm -rf $(STAGING_DIR)/host/share/cargo.dev
-#	rm -rf $(STAGING_DIR)/host/share/cargo
 #endef
 
+$(eval $(call Download,rust-dev))
 $(eval $(call HostBuild))
 $(eval $(call BuildPackage,rustc-dev))

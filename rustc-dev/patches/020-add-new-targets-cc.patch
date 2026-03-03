@@ -1,91 +1,25 @@
---- a/vendor/cc-1.0.68/src/lib.rs
-+++ b/vendor/cc-1.0.68/src/lib.rs
-@@ -2375,6 +2375,19 @@ impl Build {
-             .as_ref()
-             .map(|s| s.trim_right_matches('-').to_owned());
-         cross_compile.or(match &target[..] {
-+            // Entware/OpenWrt
-+            "aarch64-openwrt-linux-gnu" => Some("aarch64-linux-gnu"),
-+            "aarch64-openwrt-linux-musl" => Some("aarch64-linux-musl"),
-+            "arm-openwrt-linux-gnueabi" => Some("arm-linux-gnueabi"),
-+            "armv5te-openwrt-linux-gnueabi" => Some("armv5te-linux-gnueabi"),
-+            "armv7-openwrt-linux-gnueabi" => Some("armv7-linux-gnueabi"),
-+            "i586-openwrt-linux-gnu" => Some("i586-linux-gnu"),
-+            "i686-openwrt-linux-gnu" => Some("i686-linux-gnu"),
-+            "mips-openwrt-linux-gnu" => Some("mips-linux-gnu"),
-+            "mips-openwrt-linux-musl" => Some("mips-linux-musl"),
-+            "mipsel-openwrt-linux-gnu" => Some("mipsel-linux-gnu"),
-+            "mipsel-openwrt-linux-musl" => Some("mipsel-linux-musl"),
-+            "x86_64-openwrt-linux-gnu" => Some("x86_64-linux-gnu"),
-             "aarch64-unknown-linux-gnu" => Some("aarch64-linux-gnu"),
-             "aarch64-unknown-linux-musl" => Some("aarch64-linux-musl"),
-             "aarch64-unknown-netbsd" => Some("aarch64--netbsd"),
---- a/vendor/cc-1.0.72/src/lib.rs
-+++ b/vendor/cc-1.0.72/src/lib.rs
-@@ -2501,6 +2501,19 @@ impl Build {
-             .as_ref()
-             .map(|s| s.trim_right_matches('-').to_owned());
-         cross_compile.or(match &target[..] {
-+            // Entware/OpenWrt
-+            "aarch64-openwrt-linux-gnu" => Some("aarch64-linux-gnu"),
-+            "aarch64-openwrt-linux-musl" => Some("aarch64-linux-musl"),
-+            "arm-openwrt-linux-gnueabi" => Some("arm-linux-gnueabi"),
-+            "armv5te-openwrt-linux-gnueabi" => Some("armv5te-linux-gnueabi"),
-+            "armv7-openwrt-linux-gnueabi" => Some("armv7-linux-gnueabi"),
-+            "i586-openwrt-linux-gnu" => Some("i586-linux-gnu"),
-+            "i686-openwrt-linux-gnu" => Some("i686-linux-gnu"),
-+            "mips-openwrt-linux-gnu" => Some("mips-linux-gnu"),
-+            "mips-openwrt-linux-musl" => Some("mips-linux-musl"),
-+            "mipsel-openwrt-linux-gnu" => Some("mipsel-linux-gnu"),
-+            "mipsel-openwrt-linux-musl" => Some("mipsel-linux-musl"),
-+            "x86_64-openwrt-linux-gnu" => Some("x86_64-linux-gnu"),
-             "aarch64-unknown-linux-gnu" => Some("aarch64-linux-gnu"),
-             "aarch64-unknown-linux-musl" => Some("aarch64-linux-musl"),
-             "aarch64-unknown-netbsd" => Some("aarch64--netbsd"),
---- a/vendor/cc-1.0.73/src/lib.rs
-+++ b/vendor/cc-1.0.73/src/lib.rs
-@@ -2546,6 +2546,19 @@ impl Build {
-             .as_ref()
-             .map(|s| s.trim_right_matches('-').to_owned());
-         cross_compile.or(match &target[..] {
-+            // Entware/OpenWrt
-+            "aarch64-openwrt-linux-gnu" => Some("aarch64-linux-gnu"),
-+            "aarch64-openwrt-linux-musl" => Some("aarch64-linux-musl"),
-+            "arm-openwrt-linux-gnueabi" => Some("arm-linux-gnueabi"),
-+            "armv5te-openwrt-linux-gnueabi" => Some("armv5te-linux-gnueabi"),
-+            "armv7-openwrt-linux-gnueabi" => Some("armv7-linux-gnueabi"),
-+            "i586-openwrt-linux-gnu" => Some("i586-linux-gnu"),
-+            "i686-openwrt-linux-gnu" => Some("i686-linux-gnu"),
-+            "mips-openwrt-linux-gnu" => Some("mips-linux-gnu"),
-+            "mips-openwrt-linux-musl" => Some("mips-linux-musl"),
-+            "mipsel-openwrt-linux-gnu" => Some("mipsel-linux-gnu"),
-+            "mipsel-openwrt-linux-musl" => Some("mipsel-linux-musl"),
-+            "x86_64-openwrt-linux-gnu" => Some("x86_64-linux-gnu"),
-             "aarch64-pc-windows-gnu" => Some("aarch64-w64-mingw32"),
-             "aarch64-uwp-windows-gnu" => Some("aarch64-w64-mingw32"),
-             "aarch64-unknown-linux-gnu" => Some("aarch64-linux-gnu"),
---- a/vendor/cc-1.0.99/src/lib.rs
-+++ b/vendor/cc-1.0.99/src/lib.rs
-@@ -3371,6 +3371,19 @@ impl Build {
-         let cc_env = self.getenv("CROSS_COMPILE");
-         let cross_compile = cc_env.as_ref().map(|s| s.trim_end_matches('-').to_owned());
-         cross_compile.or(linker_prefix).or(match &target[..] {
-+            // Entware/OpenWrt
-+            "aarch64-openwrt-linux-gnu" => Some("aarch64-linux-gnu"),
-+            "aarch64-openwrt-linux-musl" => Some("aarch64-linux-musl"),
-+            "arm-openwrt-linux-gnueabi" => Some("arm-linux-gnueabi"),
-+            "armv5te-openwrt-linux-gnueabi" => Some("armv5te-linux-gnueabi"),
-+            "armv7-openwrt-linux-gnueabi" => Some("armv7-linux-gnueabi"),
-+            "i586-openwrt-linux-gnu" => Some("i586-linux-gnu"),
-+            "i686-openwrt-linux-gnu" => Some("i686-linux-gnu"),
-+            "mips-openwrt-linux-gnu" => Some("mips-linux-gnu"),
-+            "mips-openwrt-linux-musl" => Some("mips-linux-musl"),
-+            "mipsel-openwrt-linux-gnu" => Some("mipsel-linux-gnu"),
-+            "mipsel-openwrt-linux-musl" => Some("mipsel-linux-musl"),
-+            "x86_64-openwrt-linux-gnu" => Some("x86_64-linux-gnu"),
-             // Note: there is no `aarch64-pc-windows-gnu` target, only `-gnullvm`
-             "aarch64-pc-windows-gnullvm" => Some("aarch64-w64-mingw32"),
-             "aarch64-uwp-windows-gnu" => Some("aarch64-w64-mingw32"),
+--- a/vendor/cc-1.1.18/src/lib.rs
++++ b/vendor/cc-1.1.18/src/lib.rs
+@@ -3464,6 +3464,19 @@ impl Build {
+             })
+             .or_else(|| {
+                 match target {
++                    // Entware/OpenWrt
++                    "aarch64-openwrt-linux-gnu" => Some("aarch64-linux-gnu"),
++                    "aarch64-openwrt-linux-musl" => Some("aarch64-linux-musl"),
++                    "arm-openwrt-linux-gnueabi" => Some("arm-linux-gnueabi"),
++                    "armv5te-openwrt-linux-gnueabi" => Some("armv5te-linux-gnueabi"),
++                    "armv7-openwrt-linux-gnueabi" => Some("armv7-linux-gnueabi"),
++                    "i586-openwrt-linux-gnu" => Some("i586-linux-gnu"),
++                    "i686-openwrt-linux-gnu" => Some("i686-linux-gnu"),
++                    "mips-openwrt-linux-gnu" => Some("mips-linux-gnu"),
++                    "mips-openwrt-linux-musl" => Some("mips-linux-musl"),
++                    "mipsel-openwrt-linux-gnu" => Some("mipsel-linux-gnu"),
++                    "mipsel-openwrt-linux-musl" => Some("mipsel-linux-musl"),
++                    "x86_64-openwrt-linux-gnu" => Some("x86_64-linux-gnu"),
+                     // Note: there is no `aarch64-pc-windows-gnu` target, only `-gnullvm`
+                     "aarch64-pc-windows-gnullvm" => Some("aarch64-w64-mingw32"),
+                     "aarch64-uwp-windows-gnu" => Some("aarch64-w64-mingw32"),
 --- a/vendor/cc-1.2.0/src/lib.rs
 +++ b/vendor/cc-1.2.0/src/lib.rs
 @@ -3239,6 +3239,19 @@ impl Build {
@@ -219,6 +153,145 @@
 +            env: "gnu",
 +            abi: "",
 +            unversioned_llvm_target: "x86_64-openwrt-linux-gnu",
++        },
++    ),
++    (
+         "aarch64-apple-darwin",
+         TargetInfo {
+             full_arch: "aarch64",
+--- a/vendor/cc-1.2.13/src/lib.rs
++++ b/vendor/cc-1.2.13/src/lib.rs
+@@ -3374,6 +3374,19 @@ impl Build {
+             })
+             .or_else(|| {
+                 match target {
++                    // Entware/OpenWrt
++                    "aarch64-openwrt-linux-gnu" => Some("aarch64-linux-gnu"),
++                    "aarch64-openwrt-linux-musl" => Some("aarch64-linux-musl"),
++                    "arm-openwrt-linux-gnueabi" => Some("arm-linux-gnueabi"),
++                    "armv5te-openwrt-linux-gnueabi" => Some("armv5te-linux-gnueabi"),
++                    "armv7-openwrt-linux-gnueabi" => Some("armv7-linux-gnueabi"),
++                    "i586-openwrt-linux-gnu" => Some("i586-linux-gnu"),
++                    "i686-openwrt-linux-gnu" => Some("i686-linux-gnu"),
++                    "mips-openwrt-linux-gnu" => Some("mips-linux-gnu"),
++                    "mips-openwrt-linux-musl" => Some("mips-linux-musl"),
++                    "mipsel-openwrt-linux-gnu" => Some("mipsel-linux-gnu"),
++                    "mipsel-openwrt-linux-musl" => Some("mipsel-linux-musl"),
++                    "x86_64-openwrt-linux-gnu" => Some("x86_64-linux-gnu"),
+                     // Note: there is no `aarch64-pc-windows-gnu` target, only `-gnullvm`
+                     "aarch64-pc-windows-gnullvm" => Some("aarch64-w64-mingw32"),
+                     "aarch64-uwp-windows-gnu" => Some("aarch64-w64-mingw32"),
+--- a/vendor/cc-1.2.13/src/target/generated.rs
++++ b/vendor/cc-1.2.13/src/target/generated.rs
+@@ -5,6 +5,114 @@ use super::TargetInfo;
+ 
+ pub(crate) const LIST: &[(&str, TargetInfo<'static>)] = &[
+     (
++        "aarch64-openwrt-linux-gnu",
++        TargetInfo {
++            full_arch: "aarch64",
++            arch: "aarch64",
++            vendor: "openwrt",
++            os: "linux",
++            env: "gnu",
++            abi: "",
++            llvm_target: "aarch64-openwrt-linux-gnu",
++        },
++    ),
++    (
++        "aarch64-openwrt-linux-musl",
++        TargetInfo {
++            full_arch: "aarch64",
++            arch: "aarch64",
++            vendor: "openwrt",
++            os: "linux",
++            env: "musl",
++            abi: "",
++            llvm_target: "aarch64-openwrt-linux-musl",
++        },
++    ),
++    (
++        "arm-openwrt-linux-gnueabi",
++        TargetInfo {
++            full_arch: "arm",
++            arch: "arm",
++            vendor: "openwrt",
++            os: "linux",
++            env: "gnu",
++            abi: "eabi",
++            llvm_target: "arm-openwrt-linux-gnueabi",
++        },
++    ),
++    (
++        "armv7-openwrt-linux-gnueabi",
++        TargetInfo {
++            full_arch: "armv7",
++            arch: "arm",
++            vendor: "openwrt",
++            os: "linux",
++            env: "gnu",
++            abi: "eabi",
++            llvm_target: "armv7-openwrt-linux-gnueabi",
++        },
++    ),
++    (
++        "mips-openwrt-linux-gnu",
++        TargetInfo {
++            full_arch: "mips",
++            arch: "mips",
++            vendor: "openwrt",
++            os: "linux",
++            env: "gnu",
++            abi: "",
++            llvm_target: "mips-openwrt-linux-gnu",
++        },
++    ),
++    (
++        "mips-openwrt-linux-musl",
++        TargetInfo {
++            full_arch: "mips",
++            arch: "mips",
++            vendor: "openwrt",
++            os: "linux",
++            env: "musl",
++            abi: "",
++            llvm_target: "mips-openwrt-linux-musl",
++        },
++    ),
++    (
++        "mipsel-openwrt-linux-gnu",
++        TargetInfo {
++            full_arch: "mipsel",
++            arch: "mips",
++            vendor: "openwrt",
++            os: "linux",
++            env: "gnu",
++            abi: "",
++            llvm_target: "mipsel-openwrt-linux-gnu",
++        },
++    ),
++    (
++        "mipsel-openwrt-linux-musl",
++        TargetInfo {
++            full_arch: "mipsel",
++            arch: "mips",
++            vendor: "openwrt",
++            os: "linux",
++            env: "musl",
++            abi: "",
++            llvm_target: "mipsel-openwrt-linux-musl",
++        },
++    ),
++    (
++        "x86_64-openwrt-linux-gnu",
++        TargetInfo {
++            full_arch: "x86_64",
++            arch: "x86_64",
++            vendor: "openwrt",
++            os: "linux",
++            env: "gnu",
++            abi: "",
++            llvm_target: "x86_64-openwrt-linux-gnu",
 +        },
 +    ),
 +    (
@@ -364,8 +437,8 @@
          "aarch64-apple-darwin",
          TargetInfo {
              full_arch: "aarch64",
---- a/vendor/cc-1.2.17/src/lib.rs
-+++ b/vendor/cc-1.2.17/src/lib.rs
+--- a/vendor/cc-1.2.19/src/lib.rs
++++ b/vendor/cc-1.2.19/src/lib.rs
 @@ -3395,6 +3395,19 @@ impl Build {
              })
              .or_else(|| {
@@ -386,8 +459,8 @@
                      // Note: there is no `aarch64-pc-windows-gnu` target, only `-gnullvm`
                      "aarch64-pc-windows-gnullvm" => Some("aarch64-w64-mingw32"),
                      "aarch64-uwp-windows-gnu" => Some("aarch64-w64-mingw32"),
---- a/vendor/cc-1.2.17/src/target/generated.rs
-+++ b/vendor/cc-1.2.17/src/target/generated.rs
+--- a/vendor/cc-1.2.19/src/target/generated.rs
++++ b/vendor/cc-1.2.19/src/target/generated.rs
 @@ -4,6 +4,25 @@
  
  #[rustfmt::skip]
@@ -414,9 +487,9 @@
      ("aarch64-apple-darwin", "arm64-apple-macosx"),
      ("aarch64-apple-ios", "arm64-apple-ios"),
      ("aarch64-apple-ios-macabi", "arm64-apple-ios-macabi"),
---- a/vendor/cc-1.2.21/src/lib.rs
-+++ b/vendor/cc-1.2.21/src/lib.rs
-@@ -3401,6 +3401,19 @@ impl Build {
+--- a/vendor/cc-1.2.20/src/lib.rs
++++ b/vendor/cc-1.2.20/src/lib.rs
+@@ -3395,6 +3395,19 @@ impl Build {
              })
              .or_else(|| {
                  match target {
@@ -436,8 +509,208 @@
                      // Note: there is no `aarch64-pc-windows-gnu` target, only `-gnullvm`
                      "aarch64-pc-windows-gnullvm" => Some("aarch64-w64-mingw32"),
                      "aarch64-uwp-windows-gnu" => Some("aarch64-w64-mingw32"),
---- a/vendor/cc-1.2.21/src/target/generated.rs
-+++ b/vendor/cc-1.2.21/src/target/generated.rs
+--- a/vendor/cc-1.2.20/src/target/generated.rs
++++ b/vendor/cc-1.2.20/src/target/generated.rs
+@@ -4,6 +4,25 @@
+ 
+ #[rustfmt::skip]
+ pub(crate) const LLVM_TARGETS: &[(&str, &str)] = &[
++    // Entware/OpenWrt
++    ("aarch64-openwrt-linux-gnu", "aarch64-openwrt-linux-gnu"),
++    ("aarch64-openwrt-linux-musl", "aarch64-openwrt-linux-musl"),
++    ("arm-openwrt-linux-gnueabi", "arm-openwrt-linux-gnueabi"),
++    ("arm-openwrt-linux-musleabi", "arm-openwrt-linux-musleabi"),
++    ("armv5te-openwrt-linux-gnueabi", "armv5te-openwrt-linux-gnueabi"),
++    ("armv7-openwrt-linux-gnueabi", "armv7-openwrt-linux-gnueabi"),
++    ("armv7-openwrt-linux-musleabi", "armv7-openwrt-linux-musleabi"),
++    ("i586-openwrt-linux-gnu", "i586-openwrt-linux-gnu"),
++    ("i586-openwrt-linux-musl", "i586-openwrt-linux-musl"),
++    ("i686-openwrt-linux-gnu", "i686-openwrt-linux-gnu"),
++    ("i686-openwrt-linux-musl", "i686-openwrt-linux-musl"),
++    ("mips-openwrt-linux-gnu", "mips-openwrt-linux-gnu"),
++    ("mips-openwrt-linux-musl", "mips-openwrt-linux-musl"),
++    ("mipsel-openwrt-linux-gnu", "mipsel-openwrt-linux-gnu"),
++    ("mipsel-openwrt-linux-musl", "mipsel-openwrt-linux-musl"),
++    ("x86_64-openwrt-linux-gnu", "x86_64-openwrt-linux-gnu"),
++    ("x86_64-openwrt-linux-musl", "x86_64-openwrt-linux-musl"),
++    //
+     ("aarch64-apple-darwin", "arm64-apple-macosx"),
+     ("aarch64-apple-ios", "arm64-apple-ios"),
+     ("aarch64-apple-ios-macabi", "arm64-apple-ios-macabi"),
+--- a/vendor/cc-1.2.28/src/lib.rs
++++ b/vendor/cc-1.2.28/src/lib.rs
+@@ -3442,6 +3442,19 @@ impl Build {
+             })
+             .or_else(|| {
+                 match target {
++                    // Entware/OpenWrt
++                    "aarch64-openwrt-linux-gnu" => Some("aarch64-linux-gnu"),
++                    "aarch64-openwrt-linux-musl" => Some("aarch64-linux-musl"),
++                    "arm-openwrt-linux-gnueabi" => Some("arm-linux-gnueabi"),
++                    "armv5te-openwrt-linux-gnueabi" => Some("armv5te-linux-gnueabi"),
++                    "armv7-openwrt-linux-gnueabi" => Some("armv7-linux-gnueabi"),
++                    "i586-openwrt-linux-gnu" => Some("i586-linux-gnu"),
++                    "i686-openwrt-linux-gnu" => Some("i686-linux-gnu"),
++                    "mips-openwrt-linux-gnu" => Some("mips-linux-gnu"),
++                    "mips-openwrt-linux-musl" => Some("mips-linux-musl"),
++                    "mipsel-openwrt-linux-gnu" => Some("mipsel-linux-gnu"),
++                    "mipsel-openwrt-linux-musl" => Some("mipsel-linux-musl"),
++                    "x86_64-openwrt-linux-gnu" => Some("x86_64-linux-gnu"),
+                     // Note: there is no `aarch64-pc-windows-gnu` target, only `-gnullvm`
+                     "aarch64-pc-windows-gnullvm" => Some("aarch64-w64-mingw32"),
+                     "aarch64-uwp-windows-gnu" => Some("aarch64-w64-mingw32"),
+--- a/vendor/cc-1.2.28/src/target/generated.rs
++++ b/vendor/cc-1.2.28/src/target/generated.rs
+@@ -4,6 +4,25 @@
+ 
+ #[rustfmt::skip]
+ pub(crate) const LLVM_TARGETS: &[(&str, &str)] = &[
++    // Entware/OpenWrt
++    ("aarch64-openwrt-linux-gnu", "aarch64-openwrt-linux-gnu"),
++    ("aarch64-openwrt-linux-musl", "aarch64-openwrt-linux-musl"),
++    ("arm-openwrt-linux-gnueabi", "arm-openwrt-linux-gnueabi"),
++    ("arm-openwrt-linux-musleabi", "arm-openwrt-linux-musleabi"),
++    ("armv5te-openwrt-linux-gnueabi", "armv5te-openwrt-linux-gnueabi"),
++    ("armv7-openwrt-linux-gnueabi", "armv7-openwrt-linux-gnueabi"),
++    ("armv7-openwrt-linux-musleabi", "armv7-openwrt-linux-musleabi"),
++    ("i586-openwrt-linux-gnu", "i586-openwrt-linux-gnu"),
++    ("i586-openwrt-linux-musl", "i586-openwrt-linux-musl"),
++    ("i686-openwrt-linux-gnu", "i686-openwrt-linux-gnu"),
++    ("i686-openwrt-linux-musl", "i686-openwrt-linux-musl"),
++    ("mips-openwrt-linux-gnu", "mips-openwrt-linux-gnu"),
++    ("mips-openwrt-linux-musl", "mips-openwrt-linux-musl"),
++    ("mipsel-openwrt-linux-gnu", "mipsel-openwrt-linux-gnu"),
++    ("mipsel-openwrt-linux-musl", "mipsel-openwrt-linux-musl"),
++    ("x86_64-openwrt-linux-gnu", "x86_64-openwrt-linux-gnu"),
++    ("x86_64-openwrt-linux-musl", "x86_64-openwrt-linux-musl"),
++    //
+     ("aarch64-apple-darwin", "arm64-apple-macosx"),
+     ("aarch64-apple-ios", "arm64-apple-ios"),
+     ("aarch64-apple-ios-macabi", "arm64-apple-ios-macabi"),
+--- a/vendor/cc-1.2.33/src/lib.rs
++++ b/vendor/cc-1.2.33/src/lib.rs
+@@ -3511,6 +3511,19 @@ impl Build {
+             })
+             .or_else(|| {
+                 match target {
++                    // Entware/OpenWrt
++                    "aarch64-openwrt-linux-gnu" => Some("aarch64-linux-gnu"),
++                    "aarch64-openwrt-linux-musl" => Some("aarch64-linux-musl"),
++                    "arm-openwrt-linux-gnueabi" => Some("arm-linux-gnueabi"),
++                    "armv5te-openwrt-linux-gnueabi" => Some("armv5te-linux-gnueabi"),
++                    "armv7-openwrt-linux-gnueabi" => Some("armv7-linux-gnueabi"),
++                    "i586-openwrt-linux-gnu" => Some("i586-linux-gnu"),
++                    "i686-openwrt-linux-gnu" => Some("i686-linux-gnu"),
++                    "mips-openwrt-linux-gnu" => Some("mips-linux-gnu"),
++                    "mips-openwrt-linux-musl" => Some("mips-linux-musl"),
++                    "mipsel-openwrt-linux-gnu" => Some("mipsel-linux-gnu"),
++                    "mipsel-openwrt-linux-musl" => Some("mipsel-linux-musl"),
++                    "x86_64-openwrt-linux-gnu" => Some("x86_64-linux-gnu"),
+                     // Note: there is no `aarch64-pc-windows-gnu` target, only `-gnullvm`
+                     "aarch64-pc-windows-gnullvm" => Some("aarch64-w64-mingw32"),
+                     "aarch64-uwp-windows-gnu" => Some("aarch64-w64-mingw32"),
+--- a/vendor/cc-1.2.33/src/target/generated.rs
++++ b/vendor/cc-1.2.33/src/target/generated.rs
+@@ -4,6 +4,25 @@
+ 
+ #[rustfmt::skip]
+ pub(crate) const LLVM_TARGETS: &[(&str, &str)] = &[
++    // Entware/OpenWrt
++    ("aarch64-openwrt-linux-gnu", "aarch64-openwrt-linux-gnu"),
++    ("aarch64-openwrt-linux-musl", "aarch64-openwrt-linux-musl"),
++    ("arm-openwrt-linux-gnueabi", "arm-openwrt-linux-gnueabi"),
++    ("arm-openwrt-linux-musleabi", "arm-openwrt-linux-musleabi"),
++    ("armv5te-openwrt-linux-gnueabi", "armv5te-openwrt-linux-gnueabi"),
++    ("armv7-openwrt-linux-gnueabi", "armv7-openwrt-linux-gnueabi"),
++    ("armv7-openwrt-linux-musleabi", "armv7-openwrt-linux-musleabi"),
++    ("i586-openwrt-linux-gnu", "i586-openwrt-linux-gnu"),
++    ("i586-openwrt-linux-musl", "i586-openwrt-linux-musl"),
++    ("i686-openwrt-linux-gnu", "i686-openwrt-linux-gnu"),
++    ("i686-openwrt-linux-musl", "i686-openwrt-linux-musl"),
++    ("mips-openwrt-linux-gnu", "mips-openwrt-linux-gnu"),
++    ("mips-openwrt-linux-musl", "mips-openwrt-linux-musl"),
++    ("mipsel-openwrt-linux-gnu", "mipsel-openwrt-linux-gnu"),
++    ("mipsel-openwrt-linux-musl", "mipsel-openwrt-linux-musl"),
++    ("x86_64-openwrt-linux-gnu", "x86_64-openwrt-linux-gnu"),
++    ("x86_64-openwrt-linux-musl", "x86_64-openwrt-linux-musl"),
++    //
+     ("aarch64-apple-darwin", "arm64-apple-macosx"),
+     ("aarch64-apple-ios", "arm64-apple-ios"),
+     ("aarch64-apple-ios-macabi", "arm64-apple-ios-macabi"),
+--- a/vendor/cc-1.2.38/src/lib.rs
++++ b/vendor/cc-1.2.38/src/lib.rs
+@@ -3472,6 +3472,19 @@ impl Build {
+             })
+             .or_else(|| {
+                 match target {
++                    // Entware/OpenWrt
++                    "aarch64-openwrt-linux-gnu" => Some("aarch64-linux-gnu"),
++                    "aarch64-openwrt-linux-musl" => Some("aarch64-linux-musl"),
++                    "arm-openwrt-linux-gnueabi" => Some("arm-linux-gnueabi"),
++                    "armv5te-openwrt-linux-gnueabi" => Some("armv5te-linux-gnueabi"),
++                    "armv7-openwrt-linux-gnueabi" => Some("armv7-linux-gnueabi"),
++                    "i586-openwrt-linux-gnu" => Some("i586-linux-gnu"),
++                    "i686-openwrt-linux-gnu" => Some("i686-linux-gnu"),
++                    "mips-openwrt-linux-gnu" => Some("mips-linux-gnu"),
++                    "mips-openwrt-linux-musl" => Some("mips-linux-musl"),
++                    "mipsel-openwrt-linux-gnu" => Some("mipsel-linux-gnu"),
++                    "mipsel-openwrt-linux-musl" => Some("mipsel-linux-musl"),
++                    "x86_64-openwrt-linux-gnu" => Some("x86_64-linux-gnu"),
+                     // Note: there is no `aarch64-pc-windows-gnu` target, only `-gnullvm`
+                     "aarch64-pc-windows-gnullvm" => Some("aarch64-w64-mingw32"),
+                     "aarch64-uwp-windows-gnu" => Some("aarch64-w64-mingw32"),
+--- a/vendor/cc-1.2.38/src/target/generated.rs
++++ b/vendor/cc-1.2.38/src/target/generated.rs
+@@ -4,6 +4,25 @@
+ 
+ #[rustfmt::skip]
+ pub(crate) const LLVM_TARGETS: &[(&str, &str)] = &[
++    // Entware/OpenWrt
++    ("aarch64-openwrt-linux-gnu", "aarch64-openwrt-linux-gnu"),
++    ("aarch64-openwrt-linux-musl", "aarch64-openwrt-linux-musl"),
++    ("arm-openwrt-linux-gnueabi", "arm-openwrt-linux-gnueabi"),
++    ("arm-openwrt-linux-musleabi", "arm-openwrt-linux-musleabi"),
++    ("armv5te-openwrt-linux-gnueabi", "armv5te-openwrt-linux-gnueabi"),
++    ("armv7-openwrt-linux-gnueabi", "armv7-openwrt-linux-gnueabi"),
++    ("armv7-openwrt-linux-musleabi", "armv7-openwrt-linux-musleabi"),
++    ("i586-openwrt-linux-gnu", "i586-openwrt-linux-gnu"),
++    ("i586-openwrt-linux-musl", "i586-openwrt-linux-musl"),
++    ("i686-openwrt-linux-gnu", "i686-openwrt-linux-gnu"),
++    ("i686-openwrt-linux-musl", "i686-openwrt-linux-musl"),
++    ("mips-openwrt-linux-gnu", "mips-openwrt-linux-gnu"),
++    ("mips-openwrt-linux-musl", "mips-openwrt-linux-musl"),
++    ("mipsel-openwrt-linux-gnu", "mipsel-openwrt-linux-gnu"),
++    ("mipsel-openwrt-linux-musl", "mipsel-openwrt-linux-musl"),
++    ("x86_64-openwrt-linux-gnu", "x86_64-openwrt-linux-gnu"),
++    ("x86_64-openwrt-linux-musl", "x86_64-openwrt-linux-musl"),
++    //
+     ("aarch64-apple-darwin", "arm64-apple-macosx"),
+     ("aarch64-apple-ios", "arm64-apple-ios"),
+     ("aarch64-apple-ios-macabi", "arm64-apple-ios-macabi"),
+--- a/vendor/cc-1.2.39/src/lib.rs
++++ b/vendor/cc-1.2.39/src/lib.rs
+@@ -3473,6 +3473,19 @@ impl Build {
+             })
+             .or_else(|| {
+                 match target {
++                    // Entware/OpenWrt
++                    "aarch64-openwrt-linux-gnu" => Some("aarch64-linux-gnu"),
++                    "aarch64-openwrt-linux-musl" => Some("aarch64-linux-musl"),
++                    "arm-openwrt-linux-gnueabi" => Some("arm-linux-gnueabi"),
++                    "armv5te-openwrt-linux-gnueabi" => Some("armv5te-linux-gnueabi"),
++                    "armv7-openwrt-linux-gnueabi" => Some("armv7-linux-gnueabi"),
++                    "i586-openwrt-linux-gnu" => Some("i586-linux-gnu"),
++                    "i686-openwrt-linux-gnu" => Some("i686-linux-gnu"),
++                    "mips-openwrt-linux-gnu" => Some("mips-linux-gnu"),
++                    "mips-openwrt-linux-musl" => Some("mips-linux-musl"),
++                    "mipsel-openwrt-linux-gnu" => Some("mipsel-linux-gnu"),
++                    "mipsel-openwrt-linux-musl" => Some("mipsel-linux-musl"),
++                    "x86_64-openwrt-linux-gnu" => Some("x86_64-linux-gnu"),
+                     // Note: there is no `aarch64-pc-windows-gnu` target, only `-gnullvm`
+                     "aarch64-pc-windows-gnullvm" => Some("aarch64-w64-mingw32"),
+                     "aarch64-uwp-windows-gnu" => Some("aarch64-w64-mingw32"),
+--- a/vendor/cc-1.2.39/src/target/generated.rs
++++ b/vendor/cc-1.2.39/src/target/generated.rs
 @@ -4,6 +4,25 @@
  
  #[rustfmt::skip]
