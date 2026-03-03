@@ -1,12 +1,12 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2024-2025 Entware
+# Copyright (C) 2024-2026 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=nu-plugin-from-bencode
 PKG_REAL_VERSION:=0.11.0
-PKG_RELEASE:=1
+PKG_RELEASE:=3
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_DATE:=2025-05-19
@@ -19,10 +19,14 @@ PKG_VERSION:=$(PKG_REAL_VERSION)_git$(subst -,,$(PKG_SOURCE_DATE))~$(call versio
 PKG_LICENSE:=Apache-2.0 MIT
 PKG_LICENSE_FILES:=LICENSE-APACHE LICENSE-MIT
 
+NU_VERSION:=$(shell grep '^PKG_VERSION' ../nushell/Makefile | cut -d'=' -f2-)
+NU_RELEASE:=$(shell grep '^PKG_RELEASE' ../nushell/Makefile | cut -d'=' -f2-)
+
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0440 getrandom-0216 iana-time-zone-0163
+PKG_BUILD_DEPENDS += \
+	chrono-0440 getrandom-0216 iana-time-zone-0161 nushell
 
 define Package/nu-plugin-from-bencode
   SECTION:=utils
@@ -30,7 +34,7 @@ define Package/nu-plugin-from-bencode
   SUBMENU:=Shells
   TITLE:=nu plugin to convert bencode data
   URL:=https://github.com/bluk/nu_plugin_from_bencode
-  DEPENDS:=+nushell
+  EXTRA_DEPENDS:=nushell (=$(NU_VERSION)-r$(NU_RELEASE))
 endef
 
 define Package/nu-plugin-from-bencode/description
