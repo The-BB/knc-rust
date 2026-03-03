@@ -4,12 +4,12 @@
  
  [dependencies]
  # nu
--nu-plugin = "0.104.0"
--nu-protocol = "0.104.0"
--nu-path = "0.104.0"
-+nu-plugin = "0.104.1"
-+nu-protocol = "0.104.1"
-+nu-path = "0.104.1"
+-nu-plugin = "0.106.0"
+-nu-protocol = "0.106.0"
+-nu-path = "0.106.0"
++nu-plugin = "0.106.1"
++nu-protocol = "0.106.1"
++nu-path = "0.106.1"
  
  # highlighting
  syntect = { workspace = true }
@@ -19,11 +19,11 @@
  bat = { workspace = true }
 +
 +[patch.crates-io]
-+nu-path = { path = "../nushell-0.104.1/crates/nu-path" }
-+nu-plugin = { path = "../nushell-0.104.1/crates/nu-plugin" }
-+nu-protocol = { path = "../nushell-0.104.1/crates/nu-protocol" }
++nu-path = { path = "../nushell-0.106.1/crates/nu-path" }
++nu-plugin = { path = "../nushell-0.106.1/crates/nu-plugin" }
++nu-protocol = { path = "../nushell-0.106.1/crates/nu-protocol" }
 +# localtime/zoneinfo
 +chrono = { path = "../chrono-0.4.40" }
-+iana-time-zone = { path = "../iana-time-zone-0.1.63" }
++iana-time-zone = { path = "../iana-time-zone-0.1.61" }
 +# all: no SYS_getrandom
 +getrandom = { path = "../getrandom-0.2.16" }
