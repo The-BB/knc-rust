@@ -16,6 +16,9 @@ PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
 PKG_MAINTAINER:=Entware team, https://entware.net
 
+# XXX musl: error: format not a string literal
+PKG_FORTIFY_SOURCE:=0
+
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
