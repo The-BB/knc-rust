@@ -19,6 +19,9 @@ PKG_HASH:=e9fd24190869be6e9e8d731df2ccd0b3b1dd368ae9dbb9d620ec905b83e325ec
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE.md
 
+# XXX musl: error: format not a string literal
+PKG_FORTIFY_SOURCE:=0
+
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
