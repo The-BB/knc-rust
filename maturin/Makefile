@@ -18,12 +18,12 @@ PKG_MAINTAINER:=Entware team, https://entware.net
 HOST_BUILD_DEPENDS:= \
 	python-setuptools-rust/host \
 	python-wheel/host \
-	rustc-dev
+	rustc-dev/host
 
 HOST_BUILD_PARALLEL:=1
 HOST_PATCH_DIR:=
 
-PKG_BUILD_DEPENDS:=$(HOST_BUILD_DEPENDS) getrandom-0217 getrandom-034
+PKG_BUILD_DEPENDS:=$(HOST_BUILD_DEPENDS) getrandom-0217 getrandom-034 rustc-dev
 
 PKG_BUILD_FLAGS:=no-mips16
 
