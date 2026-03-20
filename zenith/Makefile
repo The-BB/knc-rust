@@ -25,6 +25,7 @@ define Package/zenith
   CATEGORY:=Administration
   TITLE:=soft of like top or htop
   URL:=https://github.com/bvaisvil/zenith
+  DEPENDS:=@!USE_MUSL
 endef
 
 define Package/zenith/description
