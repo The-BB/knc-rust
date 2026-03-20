@@ -27,7 +27,7 @@ define Package/spider/Default
   SECTION:=net
   CATEGORY:=Network
   URL:=https://github.com/spider-rs/spider
-  DEPENDS:=+libopenssl
+  DEPENDS:=+libopenssl @!USE_MUSL
 endef
 
 define Package/spider-cli
