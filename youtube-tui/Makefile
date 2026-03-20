@@ -30,7 +30,7 @@ define Package/youtube-tui
   CATEGORY:=Multimedia
   TITLE:=An aesthetically pleasing YouTube TUI
   URL:=https://tui.siri.ws/youtube
-  DEPENDS:=+libopenssl
+  DEPENDS:=+libopenssl @!USE_MUSL
   EXTRA_DEPENDS:=yt-dlp
 endef
 
