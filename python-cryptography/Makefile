@@ -6,7 +6,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cryptography
 PKG_VERSION:=46.0.5
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PYPI_NAME:=cryptography
 PKG_HASH:=abace499247268e3757271b2f1e244b36b06f8515cf27c4d49468fc9eb16e93d
@@ -36,7 +36,6 @@ define Package/python3-cryptography
 	+libopenssl \
 	+libopenssl-legacy \
 	+python3-cffi \
-	+python3-email \
 	+python3-urllib \
 	+python3-uuid
 endef
