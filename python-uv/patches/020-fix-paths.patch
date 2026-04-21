@@ -115,7 +115,7 @@
              }
 --- a/crates/uv-settings/src/settings.rs
 +++ b/crates/uv-settings/src/settings.rs
-@@ -1131,7 +1131,7 @@ pub struct PythonInstallMirrors {
+@@ -1161,7 +1161,7 @@ pub struct PythonInstallMirrors {
          value_type = "str",
          uv_toml_only = true,
          example = r#"
