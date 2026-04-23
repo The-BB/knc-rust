@@ -5,15 +5,15 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rustc
-PKG_VERSION:=1.94.0
+PKG_VERSION:=1.95.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-src.tar.gz
 PKG_SOURCE_URL:=https://static.rust-lang.org/dist
-PKG_HASH:=b83f921cd3f321ff614f9c06a8b870d89299fc02888b48a5549683a36823474c
+PKG_HASH:=ea9b82a83e46967537c3569ce9d6fa16811c043a96e651376c349e70241ca515
 
 PKG_LICENSE:=Apache-2.0 MIT
-PKG_LICENSE_FILES:=LICENSE-APACHE LICENSE-MIT
+PKG_LICENSE_FILES:=COPYRIGHT LICENSE-APACHE LICENSE-MIT
 
 PKG_BUILD_DEPENDS:=libiconv-full rustc-dev
 
@@ -55,7 +55,7 @@ NATIVE_TARGET_ARCH:=$(subst aarch64,AArch64,$(subst x86_64,X86,$(HOST_ARCH)))
 
 define Build/Configure
 	( \
-		echo 'change-id = 153313'; \
+		echo 'change-id = 155283'; \
 		echo '[llvm]'; \
 		echo 'download-ci-llvm = false'; \
 		echo 'allow-old-toolchain = true'; \
@@ -75,7 +75,9 @@ define Build/Configure
 			LLVM_INCLUDE_RUNTIMES="OFF", \
 			LLVM_INCLUDE_TESTS="OFF", \
 			LLVM_INCLUDE_TOOLS="ON", \
-			LLVM_INCLUDE_UTILS="OFF" \
+			LLVM_INCLUDE_UTILS="OFF", \
+			LLVM_TARGET_TRIPLE_ENV="$(RUSTC_TARGET_ARCH)", \
+			LLVM_DEFAULT_TO_GLIBCXX_USE_CXX11_ABI="1" \
 		}'; \
 		echo '[build]'; \
 		echo 'host = ["$(RUSTC_TARGET_ARCH)"]'; \

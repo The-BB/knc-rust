@@ -251,3 +251,26 @@
      "aarch64-apple-darwin",
      "aarch64-apple-ios",
      "aarch64-linux-android",
+--- a/vendor/libc-0.2.180/Cargo.toml
++++ b/vendor/libc-0.2.180/Cargo.toml
+@@ -49,6 +49,20 @@ repository = "https://github.com/rust-la
+ features = ["extra_traits"]
+ default-target = "x86_64-unknown-linux-gnu"
+ targets = [
++    # Entware/OpenWrt
++    "aarch64-openwrt-linux-gnu",
++    "aarch64-openwrt-linux-musl",
++    "arm-openwrt-linux-gnueabi",
++    "armv5te-openwrt-linux-gnueabi",
++    "armv7-openwrt-linux-gnueabi",
++    "i586-openwrt-linux-gnu",
++    "i686-openwrt-linux-gnu",
++    "mips-openwrt-linux-gnu",
++    "mips-openwrt-linux-musl",
++    "mipsel-openwrt-linux-gnu",
++    "mipsel-openwrt-linux-musl",
++    "x86_64-openwrt-linux-gnu",
++    #
+     "aarch64-apple-darwin",
+     "aarch64-apple-ios",
+     "aarch64-linux-android",
