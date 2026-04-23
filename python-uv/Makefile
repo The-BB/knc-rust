@@ -35,7 +35,7 @@ define Package/python3-uv
   EXTRA_DEPENDS:=coreutils-env, maturin
 endef
 
-RUSTFLAGS += -C relocation-model=pic
+PKG_RUSTFLAGS += -C relocation-model=pic
 
 define Package/python3-uv/description
   An extremely fast Python package and project manager, written in Rust.
