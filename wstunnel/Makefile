@@ -39,7 +39,7 @@ endef
 
 # cannot be used when making a shared object; recompile with -fPIC
 CARGO_ARGS += --no-default-features --features=ring
-RUSTFLAGS += -C relocation-model=pic
+PKG_RUSTFLAGS += -C relocation-model=pic
 
 define Package/wstunnel/install
 	$(INSTALL_DIR) $(1)/opt/usr/bin
