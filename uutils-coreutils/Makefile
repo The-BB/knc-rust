@@ -104,7 +104,7 @@ endef
 RUSTC_VARS += PROJECT_NAME_FOR_VERSION_STRING="uutils coreutils"
 
 ifeq ($(CONFIG_x86_64),y)
-RUSTFLAGS += -C relocation-model=pic
+  PKG_RUSTFLAGS += -C relocation-model=pic
 endif
 
 ifeq ($(BUILD_VARIANT),apps)
@@ -123,11 +123,11 @@ ifeq ($(BUILD_VARIANT),apps)
 else
   define Build/Compile/Cargo
 	for bins in $(COREUTILS_APPS); do \
-		cd $(CARGO_SOURCE_DIR) && \
-		$(RUSTC_VARS) RUSTFLAGS="$(RUSTFLAGS)" \
+		cd $(PKG_BUILD_DIR) && \
+		$(RUSTC_VARS) \
 		cargo build $(CARGO_ARGS) \
 		--profile $(CARGO_PKG_PROFILE) \
-		--manifest-path $(CARGO_SOURCE_DIR)/Cargo.toml \
+		--manifest-path $(PKG_BUILD_DIR)/Cargo.toml \
 		--artifact-dir $(CARGO_INSTALL_ROOT)/bin \
 		$(if $(findstring s,$(OPENWRT_VERBOSE)),--verbose) \
 		-p uu_$$$$bins; \
