@@ -34,7 +34,7 @@ define Package/ouch/description
   files and directories.
 endef
 
-RUSTFLAGS += -l dylib=zstd
+PKG_RUSTFLAGS += -l dylib=zstd
 
 define Package/ouch/install
 	$(INSTALL_DIR) $(1)/opt/usr/bin
