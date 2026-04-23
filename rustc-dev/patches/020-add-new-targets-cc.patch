@@ -687,9 +687,9 @@
      ("aarch64-apple-darwin", "arm64-apple-macosx"),
      ("aarch64-apple-ios", "arm64-apple-ios"),
      ("aarch64-apple-ios-macabi", "arm64-apple-ios-macabi"),
---- a/vendor/cc-1.2.50/src/lib.rs
-+++ b/vendor/cc-1.2.50/src/lib.rs
-@@ -3532,6 +3532,19 @@ impl Build {
+--- a/vendor/cc-1.2.55/src/lib.rs
++++ b/vendor/cc-1.2.55/src/lib.rs
+@@ -3531,6 +3531,19 @@ impl Build {
              })
              .or_else(|| {
                  match target {
@@ -709,8 +709,8 @@
                      // Note: there is no `aarch64-pc-windows-gnu` target, only `-gnullvm`
                      "aarch64-pc-windows-gnullvm" => Some("aarch64-w64-mingw32"),
                      "aarch64-uwp-windows-gnu" => Some("aarch64-w64-mingw32"),
---- a/vendor/cc-1.2.50/src/target/generated.rs
-+++ b/vendor/cc-1.2.50/src/target/generated.rs
+--- a/vendor/cc-1.2.55/src/target/generated.rs
++++ b/vendor/cc-1.2.55/src/target/generated.rs
 @@ -4,6 +4,25 @@
  
  #[rustfmt::skip]
