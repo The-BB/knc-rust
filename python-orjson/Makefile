@@ -36,7 +36,7 @@ define Package/python3-orjson/description
   Fast, correct Python JSON library supporting dataclasses, datetimes, and numpy.
 endef
 
-RUSTFLAGS += -C relocation-model=pic
+PKG_RUSTFLAGS += -C relocation-model=pic
 
 define Build/Prepare
 	$(call Build/Prepare/Default)
