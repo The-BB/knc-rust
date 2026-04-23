@@ -235,3 +235,66 @@
          let mut f = io::BufReader::new(f);
          let mut in_system_section = false;
          let mut line = String::with_capacity(80);
+--- a/vendor/jiff-0.1.29/src/tz/db/zoneinfo/enabled.rs
++++ b/vendor/jiff-0.1.29/src/tz/db/zoneinfo/enabled.rs
+@@ -22,7 +22,7 @@ use crate::{
+ const DEFAULT_TTL: Duration = Duration::new(5 * 60, 0);
+ 
+ static ZONEINFO_DIRECTORIES: &[&str] =
+-    &["/usr/share/zoneinfo", "/etc/zoneinfo"];
++    &["/opt/share/zoneinfo", "/usr/share/zoneinfo", "/etc/zoneinfo"];
+ 
+ pub(crate) struct ZoneInfo {
+     dir: Option<PathBuf>,
+--- a/vendor/jiff-0.1.29/src/tz/system/unix.rs
++++ b/vendor/jiff-0.1.29/src/tz/system/unix.rs
+@@ -1,6 +1,6 @@
+ use crate::tz::{TimeZone, TimeZoneDatabase};
+ 
+-static UNIX_LOCALTIME_PATH: &str = "/etc/localtime";
++static UNIX_LOCALTIME_PATH: &str = "/opt/etc/localtime";
+ 
+ /// Attempts to find the default "system" time zone.
+ ///
+--- a/vendor/jiff-0.2.16/src/tz/db/zoneinfo/enabled.rs
++++ b/vendor/jiff-0.2.16/src/tz/db/zoneinfo/enabled.rs
+@@ -30,7 +30,7 @@ const DEFAULT_TTL: Duration = Duration::
+ 
+ #[cfg(unix)]
+ static ZONEINFO_DIRECTORIES: &[&str] =
+-    &["/usr/share/zoneinfo", "/usr/share/lib/zoneinfo", "/etc/zoneinfo"];
++    &["/opt/share/zoneinfo", "/usr/share/zoneinfo", "/usr/share/lib/zoneinfo", "/etc/zoneinfo"];
+ 
+ // In non-Unix environments, there is (as of 2025-05-17) no standard location
+ // for the zoneinfo database. And we specifically do not search the Unix-style
+--- a/vendor/jiff-0.2.16/src/tz/system/unix.rs
++++ b/vendor/jiff-0.2.16/src/tz/system/unix.rs
+@@ -1,6 +1,6 @@
+ use crate::tz::{TimeZone, TimeZoneDatabase};
+ 
+-static UNIX_LOCALTIME_PATH: &str = "/etc/localtime";
++static UNIX_LOCALTIME_PATH: &str = "/opt/etc/localtime";
+ 
+ /// Attempts to find the default "system" time zone.
+ ///
+--- a/vendor/jiff-0.2.18/src/tz/db/zoneinfo/enabled.rs
++++ b/vendor/jiff-0.2.18/src/tz/db/zoneinfo/enabled.rs
+@@ -30,7 +30,7 @@ const DEFAULT_TTL: Duration = Duration::
+ 
+ #[cfg(unix)]
+ static ZONEINFO_DIRECTORIES: &[&str] =
+-    &["/usr/share/zoneinfo", "/usr/share/lib/zoneinfo", "/etc/zoneinfo"];
++    &["/opt/share/zoneinfo", "/usr/share/zoneinfo", "/usr/share/lib/zoneinfo", "/etc/zoneinfo"];
+ 
+ // In non-Unix environments, there is (as of 2025-05-17) no standard location
+ // for the zoneinfo database. And we specifically do not search the Unix-style
+--- a/vendor/jiff-0.2.18/src/tz/system/unix.rs
++++ b/vendor/jiff-0.2.18/src/tz/system/unix.rs
+@@ -1,6 +1,6 @@
+ use crate::tz::{TimeZone, TimeZoneDatabase};
+ 
+-static UNIX_LOCALTIME_PATH: &str = "/etc/localtime";
++static UNIX_LOCALTIME_PATH: &str = "/opt/etc/localtime";
+ 
+ /// Attempts to find the default "system" time zone.
+ ///
