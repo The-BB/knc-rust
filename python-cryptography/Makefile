@@ -54,7 +54,7 @@ define Py3Package/python3-cryptography/filespec
 -|$(PYTHON3_PKG_DIR)/CONTRIBUTING.rst
 endef
 
-RUSTFLAGS += -C relocation-model=pic
+PKG_RUSTFLAGS += -C relocation-model=pic
 
 $(eval $(call Py3Package,python3-cryptography))
 $(eval $(call BuildPackage,python3-cryptography))
