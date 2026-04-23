@@ -111,10 +111,10 @@ CARGO_ARGS += \
 
 # arm/mips(el): undefined reference to symbol '__atomic_load_8@@LIBATOMIC_1.0'
 ifneq ($(CONFIG_ARCH_64BIT),y)
-RUSTFLAGS += -l dylib=atomic
+PKG_RUSTFLAGS += -l dylib=atomic
 endif
 
-RUSTFLAGS += -C relocation-model=pic
+PKG_RUSTFLAGS += -C relocation-model=pic
 TARGET_CFLAGS += $(FPIC)
 TARGET_LDFLAGS += $(FPIC)
 
