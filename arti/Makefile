@@ -142,7 +142,7 @@ endef
 CARGO_ARGS += --features 'full'
 
 # cannot be used when making a shared object; recompile with -fPIC
-RUSTFLAGS += -C relocation-model=pic
+PKG_RUSTFLAGS += -C relocation-model=pic
 
 define Package/arti/install
 	$(INSTALL_DIR) $(1)/opt/usr/bin
