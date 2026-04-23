@@ -40,7 +40,7 @@ define Package/ntpd-rs/conffiles
 /opt/etc/ntpd-rs/ntp.toml
 endef
 
-RUSTFLAGS += -C relocation-model=pic
+PKG_RUSTFLAGS += -C relocation-model=pic
 TARGET_CFLAGS += $(FPIC)
 
 define Package/ntpd-rs/install
