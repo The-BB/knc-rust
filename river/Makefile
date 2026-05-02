@@ -28,7 +28,7 @@ define Package/river
   SUBMENU:=Web Servers/Proxies
   TITLE:=a reverse proxy application
   URL:=https://www.memorysafety.org/initiative/reverse-proxy/
-  DEPENDS:=@!(mips||mipsel) +libopenssl
+  DEPENDS:=@!(mips||mipsel) +libopenssl @BROKEN
 endef
 
 define Package/river/description
