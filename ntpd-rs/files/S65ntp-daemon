@@ -6,11 +6,11 @@ DESC="NTP with NTS server"
 PROCS="ntp-daemon"
 PROG="/opt/usr/bin/$PROCS"
 
-pre_cmd() {
+start_pre() {
   [ -d "/opt/var/run/ntpd-rs" ] || mkdir -pm 0755 /opt/var/run/ntpd-rs
 }
 
-PRECMD="pre_cmd"
+PRECMD="start_pre"
 ARGS=""
 PREARGS=""
 
