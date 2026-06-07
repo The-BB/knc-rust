@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cyme
-PKG_VERSION:=2.2.11
+PKG_VERSION:=3.0.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/tuna-f1sh/cyme/tar.gz/v$(PKG_VERSION)?
-PKG_HASH:=198afba2fc76792db9f08dfda13840aa98dbbfe0ed66238c15305fe0fdf55cf0
+PKG_HASH:=bd73a4b6f9fe502d140c9d5d3c972d85dccb53f4222afeb8260e97f1f95b96b0
 
 PKG_LICENSE:=GPL-3.0-or-later
 PKG_LICENSE_FILES:=LICENSE
@@ -18,7 +18,7 @@ PKG_LICENSE_FILES:=LICENSE
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0443 getrandom-0217 iana-time-zone-0164 udevrs-040
+PKG_BUILD_DEPENDS += chrono-0444 getrandom-0217 iana-time-zone-0164
 
 define Package/cyme
   SECTION:=utils
