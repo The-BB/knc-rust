@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=fish-shell
-PKG_VERSION:=4.5.0
+PKG_VERSION:=4.7.1
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/fish-shell/fish-shell/tar.gz/$(PKG_VERSION)?
-PKG_HASH:=3b33e087e2d5261bdf4127a0cc16d722077e1822028a7385bc3894c45f37c825
+PKG_HASH:=ce303c80fb61993f2ba4ceeca88e0dd6ad5876c4e064661ad31b715128dc7fe4
 
 PKG_LICENSE:=BSD-2-Clause GPL-2.0-only GPL-2.0-or-later ISC MIT PSF-2.0
 PKG_LICENSE_FILES:=COPYING
@@ -38,6 +38,10 @@ define Package/fish-shell/description
  simple but incompatible with other shell languages.
 endef
 
+define Package/fish-shell/conffiles
+/opt/etc/fish/config.fish
+endef
+
 RUSTC_VARS += \
 	PREFIX=/opt \
 	BINDIR=/opt/bin \
@@ -50,17 +54,21 @@ RUSTC_VARS += \
 
 define Package/fish-shell/install
 	$(INSTALL_DIR) $(1)/opt/bin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/fish $(1)/opt/bin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/fish_indent $(1)/opt/bin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/fish_key_reader $(1)/opt/bin
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/fish{,_indent,_key_reader} \
+		$(1)/opt/bin
+	$(INSTALL_DIR) $(1)/opt/etc/fish/{completions,conf.d,functions}
+	$(CP) $(PKG_BUILD_DIR)/etc/config.fish $(1)/opt/etc/fish
+	$(INSTALL_DIR) $(1)/opt/share/fish/vendor_{completions,conf,functions}.d
+	$(CP) $(PKG_BUILD_DIR)/share/{completions,functions,prompts,themes} \
+		 $(1)/opt/share/fish
+	$(CP) $(PKG_BUILD_DIR)/share/{config,__fish_build_paths}.fish \
+		 $(1)/opt/share/fish
 endef
 
 define Package/fish-shell/postinst
 #!/bin/sh
 
 grep -q 'fish' /opt/etc/shells || echo "/opt/bin/fish" >> /opt/etc/shells
-
-[ -d "/opt/share/fish" ] || fish --install -vn > /dev/null 2>&1
 endef
 
 $(eval $(call BuildPackage,fish-shell))
