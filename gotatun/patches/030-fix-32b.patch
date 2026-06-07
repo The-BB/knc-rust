@@ -1,15 +1,15 @@
 --- a/gotatun/src/noise/rate_limiter.rs
 +++ b/gotatun/src/noise/rate_limiter.rs
-@@ -20,7 +20,7 @@ use constant_time_eq::constant_time_eq;
- use mock_instant::thread_local::Instant;
+@@ -21,7 +21,7 @@ use mock_instant::thread_local::Instant;
+ use rand::TryRngCore;
  use std::collections::HashMap;
- use std::net::IpAddr;
+ use std::net::{IpAddr, SocketAddr};
 -use std::sync::atomic::{AtomicU64, Ordering};
 +use std::sync::atomic::{AtomicUsize, Ordering};
  use std::time::Duration;
  
  #[cfg(not(feature = "mock_instant"))]
-@@ -62,7 +62,7 @@ pub struct RateLimiter {
+@@ -63,7 +63,7 @@ pub struct RateLimiter {
      secret_key: [u8; 16],
      start_time: Instant,
      /// A single 64 bit counter (should suffice for many years)
@@ -18,7 +18,7 @@
      mac1_key: [u8; 32],
      cookie_key: Key,
      limit: u64,
-@@ -84,7 +84,7 @@ impl RateLimiter {
+@@ -85,7 +85,7 @@ impl RateLimiter {
              nonce_key: Self::rand_bytes(),
              secret_key,
              start_time: Instant::now(),
@@ -30,9 +30,9 @@
 --- a/gotatun/src/noise/session.rs
 +++ b/gotatun/src/noise/session.rs
 @@ -18,7 +18,7 @@ use crate::{
+ };
  use bytes::{Buf, BytesMut};
  use parking_lot::Mutex;
- use ring::aead::{Aad, CHACHA20_POLY1305, LessSafeKey, Nonce, UnboundKey};
 -use std::sync::atomic::{AtomicU64, Ordering};
 +use std::sync::atomic::{AtomicUsize, Ordering};
  use zerocopy::FromBytes;
