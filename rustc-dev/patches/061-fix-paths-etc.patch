@@ -1,5 +1,5 @@
---- a/vendor/sysinfo-0.38.2/src/unix/linux/system.rs
-+++ b/vendor/sysinfo-0.38.2/src/unix/linux/system.rs
+--- a/vendor/sysinfo-0.38.4/src/unix/linux/system.rs
++++ b/vendor/sysinfo-0.38.4/src/unix/linux/system.rs
 @@ -410,6 +410,7 @@ impl SystemInner {
      pub(crate) fn name() -> Option<String> {
          get_system_info_linux(

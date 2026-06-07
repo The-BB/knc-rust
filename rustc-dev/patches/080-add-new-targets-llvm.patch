@@ -14,9 +14,9 @@
 +    "mipsel-openwrt-linux-musl",
 +    "x86_64-openwrt-linux-gnu",
 +    //
-     "x86_64-unknown-linux-gnuasan",
-     "thumbv7a-none-eabi",
-     "thumbv7a-none-eabihf",
+     "x86_64-unknown-linux-gnumsan",
+     "x86_64-unknown-linux-gnutsan",
+ ];
 --- a/src/bootstrap/src/utils/cc_detect.rs
 +++ b/src/bootstrap/src/utils/cc_detect.rs
 @@ -195,6 +195,21 @@ fn default_compiler(

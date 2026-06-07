@@ -277,8 +277,8 @@
  
  /// Attempts to find the default "system" time zone.
  ///
---- a/vendor/jiff-0.2.18/src/tz/db/zoneinfo/enabled.rs
-+++ b/vendor/jiff-0.2.18/src/tz/db/zoneinfo/enabled.rs
+--- a/vendor/jiff-0.2.23/src/tz/db/zoneinfo/enabled.rs
++++ b/vendor/jiff-0.2.23/src/tz/db/zoneinfo/enabled.rs
 @@ -30,7 +30,7 @@ const DEFAULT_TTL: Duration = Duration::
  
  #[cfg(unix)]
@@ -288,8 +288,8 @@
  
  // In non-Unix environments, there is (as of 2025-05-17) no standard location
  // for the zoneinfo database. And we specifically do not search the Unix-style
---- a/vendor/jiff-0.2.18/src/tz/system/unix.rs
-+++ b/vendor/jiff-0.2.18/src/tz/system/unix.rs
+--- a/vendor/jiff-0.2.23/src/tz/system/unix.rs
++++ b/vendor/jiff-0.2.23/src/tz/system/unix.rs
 @@ -1,6 +1,6 @@
  use crate::tz::{TimeZone, TimeZoneDatabase};
  
