@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=jql
-PKG_VERSION:=8.0.10
+PKG_VERSION:=8.1.2
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/yamafaktory/jql/tar.gz/$(PKG_NAME)-v$(PKG_VERSION)?
-PKG_HASH:=f8c26ed8178de263ad06bbe6096de0e81dbf22f90a281d6fbd87d25c9f7e2dc7
+PKG_HASH:=a8d76cf0d6c15988034cb186975fb0da360041e59350b2abead52c7801747315
 
 PKG_LICENSE:=Apache-2.0 MIT
 PKG_LICENSE_FILES:=LICENCE-APACHE LICENCE-MIT
@@ -28,12 +28,17 @@ define Package/jql
   CATEGORY:=Utilities
   TITLE:=a JSON Query Language CLI tool
   URL:=https://github.com/yamafaktory/jql
+  DEPENDS:=+(arm||mips||mipsel):libatomic
 endef
 
 define Package/jql/description
   jql - JSON Query Language - is a fast and simple command-line tool
   to manipulate JSON data.
 endef
+
+ifneq ($(CONFIG_ARCH_64BIT),y)
+PKG_RUSTFLAGS += -l dylib=atomic
+endif
 
 define Package/jql/install
 	$(INSTALL_DIR) $(1)/opt/usr/bin
