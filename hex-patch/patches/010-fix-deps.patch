@@ -1,6 +1,6 @@
 --- a/Cargo.toml
 +++ b/Cargo.toml
-@@ -56,3 +56,15 @@ const-str = "1.0.0"
+@@ -56,3 +56,16 @@ const-str = "1.1.0"
  
  [target.'cfg(windows)'.dependencies]
  winapi = "0.3.9"
@@ -11,8 +11,9 @@
 +russh-sftp = { path = "../russh-sftp-2.1.1" }
 +seize = { path = "../seize-0.3.3" }
 +# localtime/zoneinfo
-+chrono = { path = "../chrono-0.4.43" }
++chrono = { path = "../chrono-0.4.44" }
 +iana-time-zone = { path = "../iana-time-zone-0.1.64" }
 +# all: no SYS_getrandom
 +getrandom2 = { path = "../getrandom-0.2.17", package = "getrandom", version = "0.2.17" }
 +getrandom3 = { path = "../getrandom-0.3.4", package = "getrandom", version = "0.3.4" }
++getrandom4 = { path = "../getrandom-0.4.2", package = "getrandom", version = "0.4.2" }
