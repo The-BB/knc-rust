@@ -5,14 +5,14 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=newsboat
-PKG_VERSION:=2.42
+PKG_VERSION:=2.43
 PKG_RELEASE:=1
 
 PKG_GIT_TAG:=r$(subst $(space),.,$(wordlist 1,2,$(subst .,$(space),$(PKG_VERSION))))
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://codeload.github.com/newsboat/newsboat/tar.gz/refs/tags/$(PKG_GIT_TAG)?
-PKG_HASH:=f06e39279a7c884e60f9dbcb58fd1f23ff888dd6fca6dbab5879fb039c83f03a
+PKG_SOURCE_URL:=https://codeload.github.com/newsboat/newsboat/tar.gz/$(PKG_GIT_TAG)?
+PKG_HASH:=c5cebe4e81e79fece453745b4eae6c6f5fb87b24979b83edf629ac21d5f350e6
 
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
@@ -23,7 +23,7 @@ include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/nls.mk
 include ../rustc-dev/rust.mk
 
-PKG_BUILD_DEPENDS += chrono-0442 getrandom-033 iana-time-zone-0164
+PKG_BUILD_DEPENDS += chrono-0444 getrandom-034 iana-time-zone-0164
 PKG_UNPACK += --strip-components=1 -C $(PKG_BUILD_DIR)
 
 define Package/newsboat
