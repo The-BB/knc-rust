@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=mqttui
-PKG_VERSION:=0.22.1
-PKG_RELEASE:=3
+PKG_VERSION:=0.23.0
+PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://codeload.github.com/EdJoPaTo/mqttui/tar.gz/refs/tags/v$(PKG_VERSION)?
-PKG_HASH:=c8a65a1aef2e96484e09972de50fb6150a868cd30ce16d26df1466fdac1a6c75
+PKG_SOURCE_URL:=https://codeload.github.com/EdJoPaTo/mqttui/tar.gz/v$(PKG_VERSION)?
+PKG_HASH:=98cd09e4c81b89be12ea65efd6c88890324c826965bc24d12d40e5449f3616e7
 
 PKG_LICENSE:=GPL-3.0-or-later
 PKG_LICENSE_FILES:=LICENSE
@@ -18,7 +18,8 @@ PKG_LICENSE_FILES:=LICENSE
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0440 getrandom-0215 getrandom-032 iana-time-zone-0163
+PKG_BUILD_DEPENDS += \
+	chrono-0444 getrandom-0217 getrandom-034 getrandom-042 iana-time-zone-0164
 
 define Package/mqttui
   SECTION:=utils
