@@ -1,34 +1,50 @@
 --- a/src/filetransfer/remotefs_builder.rs
 +++ b/src/filetransfer/remotefs_builder.rs
-@@ -13,10 +13,6 @@ use remotefs_kube::KubeMultiPodFs as Kub
- use remotefs_smb::SmbOptions;
+@@ -14,8 +14,7 @@ use remotefs_smb::SmbOptions;
  #[cfg(smb)]
  use remotefs_smb::{SmbCredentials, SmbFs};
--#[cfg(windows)]
--use remotefs_ssh::LibSsh2Session as SshSession;
--#[cfg(unix)]
--use remotefs_ssh::LibSshSession as SshSession;
- use remotefs_ssh::{ScpFs, SftpFs, SshAgentIdentity, SshConfigParseRule, SshOpts};
+ use remotefs_ssh::{
+-    NoCheckServerKey, RusshSession as SshSession, ScpFs, SftpFs, SshAgentIdentity,
+-    SshConfigParseRule, SshOpts,
++    ScpFs, SftpFs, SshAgentIdentity, SshConfigParseRule, SshOpts,
+ };
  use remotefs_webdav::WebDAVFs;
  
-@@ -142,18 +138,12 @@ impl RemoteFsBuilder {
-     }
- 
-     /// Build scp client
--    fn scp_client(
--        params: GenericProtocolParams,
--        config_client: &ConfigClient,
--    ) -> ScpFs<SshSession> {
-+    fn scp_client(params: GenericProtocolParams, config_client: &ConfigClient) -> ScpFs {
-         Self::build_ssh_opts(params, config_client).into()
+@@ -52,10 +51,10 @@ impl RemoteFsBuilder {
+                 Ok(Box::new(Self::kube_client(params)?))
+             }
+             (FileTransferProtocol::Scp, ProtocolParams::Generic(params)) => {
+-                Ok(Box::new(Self::scp_client(params, config_client)?))
++                Ok(Box::new(Self::scp_client(params, config_client)))
+             }
+             (FileTransferProtocol::Sftp, ProtocolParams::Generic(params)) => {
+-                Ok(Box::new(Self::sftp_client(params, config_client)?))
++                Ok(Box::new(Self::sftp_client(params, config_client)))
+             }
+             #[cfg(smb)]
+             (FileTransferProtocol::Smb, ProtocolParams::Smb(params)) => {
+@@ -138,20 +137,16 @@ impl RemoteFsBuilder {
+     fn scp_client(
+         params: GenericProtocolParams,
+         config_client: &ConfigClient,
+-    ) -> Result<ScpFs<SshSession<NoCheckServerKey>>, String> {
+-        let opts = Self::build_ssh_opts(params, config_client);
+-        let rt = Self::tokio_runtime()?;
+-        Ok(ScpFs::russh(opts, rt))
++    ) -> ScpFs {
++        Self::build_ssh_opts(params, config_client).into()
      }
  
      /// Build sftp client
--    fn sftp_client(
--        params: GenericProtocolParams,
--        config_client: &ConfigClient,
--    ) -> SftpFs<SshSession> {
-+    fn sftp_client(params: GenericProtocolParams, config_client: &ConfigClient) -> SftpFs {
-         Self::build_ssh_opts(params, config_client).into()
+     fn sftp_client(
+         params: GenericProtocolParams,
+         config_client: &ConfigClient,
+-    ) -> Result<SftpFs<SshSession<NoCheckServerKey>>, String> {
+-        let opts = Self::build_ssh_opts(params, config_client);
+-        let rt = Self::tokio_runtime()?;
+-        Ok(SftpFs::russh(opts, rt))
++    ) -> SftpFs {
++        Self::build_ssh_opts(params, config_client).into()
      }
  
+     #[cfg(smb_unix)]
