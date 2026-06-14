@@ -1,6 +1,6 @@
 --- a/spider/Cargo.toml
 +++ b/spider/Cargo.toml
-@@ -81,7 +81,8 @@ tracing = { version = "0.1", default-fea
+@@ -82,7 +82,8 @@ tracing = { version = "0.1", default-fea
  sysinfo = { version = "0.38", default-features = false, features = [
      "system",
  ], optional = true }
@@ -10,19 +10,32 @@
      "runtime-tokio",
      "sqlite",
  ], optional = true }
+@@ -130,8 +131,10 @@ version = "2.48.13"
+ optional = true
+ default-features = false
+ 
+-[target.'cfg(target_os = "linux")'.dependencies]
++[target.'cfg(all(target_os = "linux", not(target_vendor = "openwrt")))'.dependencies]
+ io-uring = { version = "0.7", optional = true }
++
++[target.'cfg(target_os = "linux")'.dependencies]
+ libc = "0.2"
+ 
+ [target.'cfg(all(unix, not(target_os = "linux")))'.dependencies]
 --- a/Cargo.toml
 +++ b/Cargo.toml
-@@ -12,3 +12,13 @@ members = [
+@@ -13,3 +13,14 @@ members = [
      "benches"]
  resolver = "2"
  
 +[patch.crates-io]
 +# mips/mipsel: error[E0432]: unresolved import `std::sync::atomic::AtomicU64`
-+chromey = { path = "../chromey-2.38.4" }
++chromey = { path = "../chromey-2.42.12" }
++rmcp = { path = "../rmcp-1.2.0/crates/rmcp" }
 +# localtime/zoneinfo
 +chrono = { path = "../chrono-0.4.44" }
 +iana-time-zone = { path = "../iana-time-zone-0.1.64" }
 +# all: no SYS_getrandom
 +getrandom2 = { path = "../getrandom-0.2.17", package = "getrandom", version = "0.2.17" }
 +getrandom3 = { path = "../getrandom-0.3.4", package = "getrandom", version = "0.3.4" }
-+getrandom4 = { path = "../getrandom-0.4.1", package = "getrandom", version = "0.4.1" }
++getrandom4 = { path = "../getrandom-0.4.2", package = "getrandom", version = "0.4.2" }
