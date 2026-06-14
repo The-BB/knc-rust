@@ -1,28 +1,29 @@
 --- a/src/sandbox/mod.rs
 +++ b/src/sandbox/mod.rs
-@@ -10,14 +10,14 @@ use nix::unistd::{getgroups, setgroups};
+@@ -9,7 +9,7 @@ use nix::unistd::{Gid, Uid, setgid, setu
+ use nix::unistd::{getgroups, setgroups};
  
  pub mod config;
- #[cfg(target_os="linux")]
--pub mod seccomp;
-+//pub mod seccomp;
+-#[cfg(target_os = "linux")]
++#[cfg(not(all(target_os = "linux", target_vendor = "openwrt")))]
+ pub mod seccomp;
  
  pub fn activate_stage1(disable_seccomp: bool) -> Result<()> {
-     if disable_seccomp {
-         warn!("DANGER: seccomp sandbox is disabled, please report bugs at https://github.com/kpcyrd/sniffglue/issues if seccomp is causing issues");
+@@ -18,7 +18,7 @@ pub fn activate_stage1(disable_seccomp:
+             "DANGER: seccomp sandbox is disabled, please report bugs at https://github.com/kpcyrd/sniffglue/issues if seccomp is causing issues"
+         );
      } else {
-         #[cfg(target_os="linux")]
--        seccomp::activate_stage1()?;
-+        warn!("INFO: seccomp sandbox is disabled");
+-        #[cfg(target_os = "linux")]
++        #[cfg(not(all(target_os = "linux", target_vendor = "openwrt")))]
+         seccomp::activate_stage1()?;
      }
  
-     info!("stage 1/2 is active");
-@@ -139,7 +139,7 @@ pub fn activate_stage2(disable_seccomp:
+@@ -133,7 +133,7 @@ pub fn activate_stage2(disable_seccomp:
+     apply_config(config)?;
  
      if !disable_seccomp {
-         #[cfg(target_os="linux")]
--        seccomp::activate_stage2()?;
-+        warn!("INFO: seccomp sandbox is disabled");
+-        #[cfg(target_os = "linux")]
++        #[cfg(not(all(target_os = "linux", target_vendor = "openwrt")))]
+         seccomp::activate_stage2()?;
      }
  
-     info!("stage 2/2 is active");
