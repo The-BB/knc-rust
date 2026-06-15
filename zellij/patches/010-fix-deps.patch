@@ -1,6 +1,6 @@
 --- a/default-plugins/session-manager/Cargo.toml
 +++ b/default-plugins/session-manager/Cargo.toml
-@@ -7,7 +7,7 @@ edition = "2018"
+@@ -7,7 +7,7 @@ edition.workspace = true
  [dependencies]
  ansi_term = "0.12.1"
  zellij-tile = { path = "../../zellij-tile" }
@@ -11,18 +11,18 @@
  humantime = "2.1.0"
 --- a/zellij-server/Cargo.toml
 +++ b/zellij-server/Cargo.toml
-@@ -19,7 +19,7 @@ base64 = { version = "0.13.0", default-f
+@@ -17,7 +17,7 @@ base64 = { version = "0.13.0", default-f
  byteorder = { version = "1.4.3", default-features = false, features = ["std"] }
  bytes = { version = "1.6.0", default-features = false, features = ["std"] }
  cassowary = { version = "0.3.0", default-features = false }
 -chrono = { version = "0.4.19", default-features = false, features = ["std", "clock"] }
 +chrono = { version = "0.4.41", default-features = false, features = ["std", "clock"] }
- close_fds = { version = "0.3.2", default-features = false }
- daemonize = { workspace = true }
+ crossbeam = { version = "0.8", default-features = false, features = ["crossbeam-channel", "std"] }
  highway = { version = "0.6.4", default-features = false, features = ["std"] }
+ interprocess = { workspace = true }
 --- a/Cargo.toml
 +++ b/Cargo.toml
-@@ -141,3 +141,11 @@ web_server_capability = ["zellij-client/
+@@ -160,3 +160,11 @@ web_server_capability = ["zellij-client/
  # uncomment this when developing plugins in the Zellij UI to make plugin compilation faster
  # [profile.dev.package."*"]
  # opt-level = 3
