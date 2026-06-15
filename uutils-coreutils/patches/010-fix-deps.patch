@@ -1,13 +1,13 @@
 --- a/Cargo.toml
 +++ b/Cargo.toml
-@@ -775,3 +775,11 @@ large_types_passed_by_value = "allow"
+@@ -769,3 +769,11 @@ debug = true
  
- [workspace.metadata.cargo-shear]
- ignored = ["clap", "fluent", "libstdbuf"]
+ [lints]
+ workspace = true
 +
 +[patch.crates-io]
 +# localtime/zoneinfo
-+chrono = { path = "../../chrono-0.4.43" }
++chrono = { path = "../../chrono-0.4.44" }
 +iana-time-zone = { path = "../../iana-time-zone-0.1.64" }
 +# all: no SYS_getrandom
 +getrandom2 = { path = "../../getrandom-0.2.17", package = "getrandom", version = "0.2.17" }
