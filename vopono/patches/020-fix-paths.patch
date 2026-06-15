@@ -7,14 +7,14 @@
 -        let dir_path = format!("/etc/netns/{ns_name}");
 +        let dir_path = format!("/opt/etc/netns/{ns_name}");
          std::fs::create_dir_all(&dir_path)
-             .with_context(|| format!("Failed to create directory: {}", &dir_path))?;
+             .with_context(|| format!("Failed to create directory: {}", dir_path))?;
          std::fs::set_permissions(&dir_path, PermissionsExt::from_mode(0o755)) // Directories usually need execute permission
              .with_context(|| format!("Failed to set directory permissions for {dir_path}"))?;
  
 -        let resolv_conf_path = format!("/etc/netns/{ns_name}/resolv.conf");
 +        let resolv_conf_path = format!("/opt/etc/netns/{ns_name}/resolv.conf");
          let mut resolv = std::fs::File::create(&resolv_conf_path)
-             .with_context(|| format!("Failed to open resolv.conf: {}", &resolv_conf_path))?;
+             .with_context(|| format!("Failed to open resolv.conf: {}", resolv_conf_path))?;
          std::fs::set_permissions(&resolv_conf_path, PermissionsExt::from_mode(0o644))
 @@ -78,7 +78,7 @@ impl DnsConfig {
          };
@@ -23,7 +23,7 @@
 -            let hosts_path = format!("/etc/netns/{ns_name}/hosts");
 +            let hosts_path = format!("/opt/etc/netns/{ns_name}/hosts");
              let mut hosts = std::fs::File::create(&hosts_path)
-                 .with_context(|| format!("Failed to open hosts: {}", &hosts_path))?;
+                 .with_context(|| format!("Failed to open hosts: {}", hosts_path))?;
              std::fs::set_permissions(&hosts_path, PermissionsExt::from_mode(0o644))
 @@ -93,9 +93,9 @@ impl DnsConfig {
              }
@@ -73,8 +73,8 @@
              std::fs::File::create(&resolv_conf_path)
 --- a/vopono_core/src/network/wireguard.rs
 +++ b/vopono_core/src/network/wireguard.rs
-@@ -80,8 +80,8 @@ impl Wireguard {
-                 "PersistentKeepalive",
+@@ -121,8 +121,8 @@ impl Wireguard {
+                 "H4",
              ];
  
 -            let mut f = std::fs::File::create("/tmp/vopono_wg.conf")
@@ -84,22 +84,24 @@
              write!(
                  f,
                  "{}",
-@@ -171,11 +171,11 @@ impl Wireguard {
+@@ -210,13 +210,13 @@ impl Wireguard {
  
          NetworkNamespace::exec(
              &namespace.name,
--            &["wg", "setconf", &if_name, "/tmp/vopono_wg.conf"],
-+            &["wg", "setconf", &if_name, "/opt/tmp/vopono_wg.conf"],
+-            &[&executable_wg, "setconf", &if_name, "/tmp/vopono_wg.conf"],
++            &[&executable_wg, "setconf", &if_name, "/opt/tmp/vopono_wg.conf"],
          )
-         .context("Failed to run wg setconf - is wireguard-tools installed?")?;
+         .context(format!(
+             "Failed to run {executable_wg} setconf - is wireguard-tools installed?"
+         ))?;
 -        std::fs::remove_file("/tmp/vopono_wg.conf")
 -            .context("Deleting file: /tmp/vopono_wg.conf")
 +        std::fs::remove_file("/opt/tmp/vopono_wg.conf")
 +            .context("Deleting file: /opt/tmp/vopono_wg.conf")
              .ok();
-         let mut interface_addresses: Vec<IpAddr> = Vec::new();
-         // Extract addresses
-@@ -373,14 +373,14 @@ impl Wireguard {
+ 
+         if config.peer.keepalive.is_none() {
+@@ -438,14 +438,14 @@ impl Wireguard {
  
                  let nftcmd = nftcmd.join("\n");
                  {
@@ -121,7 +123,7 @@
              Firewall::IpTables => {
 --- a/vopono_core/src/util/mod.rs
 +++ b/vopono_core/src/util/mod.rs
-@@ -44,7 +44,7 @@ pub fn config_dir() -> anyhow::Result<Pa
+@@ -80,7 +80,7 @@ pub fn config_dir() -> anyhow::Result<Pa
                  if path.exists() {
                      // Work-around for case when root $HOME is set but user's is not
                      // It seems we cannot distinguish these cases
@@ -130,7 +132,7 @@
                          None
                      } else {
                          Some(path.into())
-@@ -59,7 +59,7 @@ pub fn config_dir() -> anyhow::Result<Pa
+@@ -95,7 +95,7 @@ pub fn config_dir() -> anyhow::Result<Pa
          .or_else(|| {
              if let Ok(user) = std::env::var("SUDO_USER") {
                  // TODO: DRY
@@ -139,7 +141,7 @@
                  let path = Path::new(&confpath);
                  debug!(
                      "Using config dir from $SUDO_USER config: {}",
-@@ -89,9 +89,9 @@ pub fn config_dir() -> anyhow::Result<Pa
+@@ -125,9 +125,9 @@ pub fn config_dir() -> anyhow::Result<Pa
              if let Some(user) = get_user_by_uid(get_current_uid()) {
                  // Handles case when run as root directly
                  let confpath = if get_current_uid() == 0 {
@@ -151,7 +153,7 @@
                  };
                  let path = Path::new(&confpath);
                  debug!(
-@@ -345,7 +345,7 @@ pub fn clean_dead_namespaces() -> anyhow
+@@ -401,7 +401,7 @@ pub fn clean_dead_namespaces() -> anyhow
          })
          .try_for_each(|x| {
              debug!("Removing dead namespace: {x}");
